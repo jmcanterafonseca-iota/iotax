@@ -2,6 +2,16 @@
 
 CLI for IOTA 1, Chrysalis and beyond
 
+## Installation
+
+```
+npm install iotax
+```
+
+## Run 
+
+On the command line ```ìotax```
+
 ## Commands
 
 ```
