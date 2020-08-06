@@ -2,6 +2,11 @@
 
 CLI for IOTA 1, Chrysalis and beyond
 
+[![License badge](https://img.shields.io/github/license/jmcanterafonseca-iota/iotax.svg)](https://opensource.org/licenses/MIT)
+[![Build badge](https://img.shields.io/travis/jmcanterafonseca-iota/iotax.svg)](https://travis-ci.org/jmcanterafonseca-iota/iotax/)
+[![node badge](https://img.shields.io/node/v/iotax.svg)](https://www.npmjs.com/package/iotax)
+[![npm badge](https://img.shields.io/npm/dm/iotax.svg)](https://www.npmjs.com/package/iotax)
+
 ## Installation
 
 ```
