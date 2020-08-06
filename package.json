@@ -9,7 +9,7 @@
     "build-watch": "tsc --watch",
     "build-lint": "tslint -p ./tsconfig.json -c ./tslint.json -t verbose",
     "build": "npm-run-all build-clean build-compile build-lint",
-    "start": "node ./dist/index"
+    "start": "node ./dist/iotax"
   },
   "repository": {
     "type": "git",
