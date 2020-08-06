@@ -10,7 +10,7 @@ npm install iotax
 
 ## Run 
 
-On the command line ```ìotax```
+On the command line just run ```iotax```
 
 ## Commands
 
