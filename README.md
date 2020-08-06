@@ -1,2 +1,3 @@
 # iotax
-iotax is a command line utility for interacting conveniently with IOTA networks
+
+CLI for IOTA 1, Chrysalis and beyond

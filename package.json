@@ -1,0 +1,43 @@
+{
+  "name": "iotax",
+  "version": "0.1.0",
+  "description": "CLI for IOTA",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-clean": "rimraf ./dist/*",
+    "build-compile": "tsc",
+    "build-watch": "tsc --watch",
+    "build-lint": "tslint -p ./tsconfig.json -c ./tslint.json -t verbose",
+    "build": "npm-run-all build-clean build-compile build-lint",
+    "start": "node ./dist/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmcanterafonseca-iota/IOTA-Javascript.git/tree/master/iotax"
+  },
+  "keywords": [
+    "iota",
+    "cli",
+    "util"
+  ],
+  "author": "Jose M. Cantera",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jmcanterafonseca-iota/IOTA-Javascript/issues"
+  },
+  "homepage": "https://github.com/jmcanterafonseca-iota/IOTA-Javascript#readme",
+  "dependencies": {
+    "@iota/mam.js": "^1.0.0-beta.9",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "tslint": "^6.1.3",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-microsoft-contrib": "^6.2.0",
+    "typescript": "^3.9.7",
+    "yargs": "^15.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.27",
+    "@types/yargs": "^15.0.5"
+  }
+}
