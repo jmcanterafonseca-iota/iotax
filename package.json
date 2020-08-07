@@ -1,5 +1,5 @@
 {
-  "name": "iotax",
+  "name": "@jmcanterafonseca-iota/iotax",
   "version": "0.1.0",
   "description": "CLI for IOTA",
   "bin" : { "iotax" : "./dist/iotax.js" },
@@ -21,6 +21,9 @@
     "cli",
     "util"
   ],
+  "engines": {
+    "node": "12.x"
+  },
   "author": "Jose M. Cantera",
   "license": "MIT",
   "bugs": {
