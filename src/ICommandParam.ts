@@ -1,4 +1,4 @@
-import {Options} from "yargs";
+import { Options } from "yargs";
 
 export default interface ICommandParam {
   name: string;

@@ -1,33 +1,41 @@
+import { asciiToTrytes } from "@iota/converter";
 import { composeAPI } from "@iota/core";
+import { channelRoot, createChannel, createMessage, IMamChannelState, mamAttach, MamMode } from "@iota/mam.js";
 import { Arguments } from "yargs";
 
-import { channelRoot, createChannel, createMessage, IMamChannelState, mamAttach, MamMode } from "@iota/mam.js";
 
-import { asciiToTrytes } from "@iota/converter";
 import { getNetworkParams, providerName } from "./mamParams";
 
-type PublishParams = {
-  network: string,
-  mwm: number,
-  seed: string,
-  mode: MamMode,
-  sideKey?: string,
-  startIndex?: number,
-  message: string
-};
+interface PublishParams {
+  network: string;
+  mwm: number;
+  seed: string;
+  mode: MamMode;
+  sideKey?: string;
+  startIndex?: number;
+  message: string;
+}
 
-const mamExplorerLink: string = "https://utils.iota.org/mam";
+
+const mamExplorerLink: string = "https://explorer.iota.org";
 
 const SECURITY_LEVEL = 2;
 const DEPTH = 3;
 
-// The publish to MAM Channel function
-async function publish(args: PublishParams): Promise<{
-  treeRoot: string,
-  thisRoot: string,
-  nextIndex: number
-}> {
 
+/**
+ * The publish to MAM Channel function
+ *
+ * @param args Publish params
+ *
+ * @returns the tree root, the current root, and the next index
+ *
+ */
+async function publish(args: PublishParams): Promise<{
+  treeRoot: string;
+  thisRoot: string;
+  nextIndex: number;
+}> {
   // Initialise IOTA API
   const api = composeAPI({ provider: args.network });
 
@@ -50,14 +58,21 @@ async function publish(args: PublishParams): Promise<{
   };
 }
 
+
+/**
+ * Formats the URL to be used with the IOTA Explorer Web App
+ *
+ * @param root The root
+ * @param params The publish params
+ *
+ * @returns the URL
+ *
+ */
 function formatExplorerURI(root: string, params: PublishParams): string {
   if (!params.sideKey) {
-    return `${mamExplorerLink}/${root}/${params.mode}/${providerName(params.network)}`;
-  } else {
-    return `${mamExplorerLink}/${root}/${params.mode}/${params.sideKey}/${providerName(
-      params.network
-    )}`;
+    return `${mamExplorerLink}/${providerName(params.network)}/streams/0/${root}/${params.mode}`;
   }
+  return `${mamExplorerLink}/${providerName(params.network)}/streams/0/${root}/${params.mode}/${params.sideKey}`;
 }
 
 export default class PublishMamCommandExecutor {
@@ -71,7 +86,7 @@ export default class PublishMamCommandExecutor {
         ...getNetworkParams(args),
         seed: args.seed as string,
         mode: args.mode as MamMode,
-        message: message,
+        message,
         startIndex: args.index as number,
         sideKey: args.sidekey as string
       };
@@ -87,7 +102,7 @@ export default class PublishMamCommandExecutor {
 
       return true;
     } catch (error) {
-      console.error("Error while publishing to MAM Channel: ", error);
+      console.error("Error while publishing to MAM Channel:", error);
       return false;
     }
   }

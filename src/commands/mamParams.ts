@@ -7,10 +7,18 @@ const DEVNET_URL = "https://nodes.devnet.iota.org";
 const DEFAULT_MWM: number = 9;
 const COMNET_MWM: number = 10;
 
-const providers = Object.create(null);
+const providers: { [key: string]: string } = Object.create(null);
+
 providers[DEVNET_URL] = "devnet";
 providers[COMNET_URL] = "comnet";
 
+/**
+ * Returns the network provider name
+ *
+ * @param network Network endpoint
+ *
+ * @returns provider name
+ */
 export function providerName(network: string): string {
   return providers[network];
 }
@@ -25,7 +33,14 @@ export const seedParam: ICommandParam = {
   }
 };
 
-export function getNetworkParams(args: Arguments): { network: string, mwm: number } {
+/**
+ * Obtains the network params
+ *
+ * @param args the arguments passed
+ *
+ * @returns the params
+ */
+export function getNetworkParams(args: Arguments): { network: string; mwm: number } {
   let network: string;
   let mwm: number = DEFAULT_MWM;
 

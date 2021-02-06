@@ -14,7 +14,7 @@ const params: ICommandParam[] = [
     options: {
       type: "string",
       description: "Sidekey for restricted channels",
-      default: null,
+      default: undefined,
       global: false
     }
   },
@@ -39,11 +39,13 @@ const params: ICommandParam[] = [
 
 export default class PublishMamCommand implements ICommand {
   public subCommands: null;
+
   public name: string = "publish";
+
   public description: string = "MAM Channel Publish";
 
   public async execute(args: Arguments): Promise<boolean> {
-    return await PublishMamCommandExecutor.execute(args);
+    return PublishMamCommandExecutor.execute(args);
   }
 
   public register(yargs: Argv): void {
