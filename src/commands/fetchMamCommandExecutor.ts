@@ -302,13 +302,19 @@ export default class FetchMamCommandExecutor {
 
     if (typeof watchParam === "undefined") {
       watch = false;
+    } else {
+      watch = args.watch as boolean;
     }
+
     const limit = (args.limit || Infinity) as number;
 
     const seed = args.seed as string;
     const maxChunkSize = (args.chunksize || CHUNK_SIZE) as number;
 
-    const partitions: number = args.partitions as number;
+    let partitions: number = 1;
+    if (typeof args.partitions !== "undefined") {
+      partitions = args.partitions as number;
+    }
     const combined: boolean = args.combined as boolean;
 
     const params: MamFetchParameters = {

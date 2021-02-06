@@ -46,7 +46,6 @@ const params: ICommandParam[] = [
     options: {
       type: "number",
       description: "Number of partitions to use when fetching",
-      default: 1,
       global: false
     }
   },
