@@ -84,11 +84,15 @@ const checkFunction = argv => {
     throw new Error("Missing MAM Channel's root or seed");
   }
 
- if (typeof argv.partitions === "number") {
-   if (argv.partitions as number < 1) {
-    throw new Error("The number of partitions must be greater or equal than 1");
-   }
- }
+  if (typeof argv.partitions === "number") {
+    if (argv.partitions as number < 1) {
+      throw new Error("The number of partitions must be greater or equal than 1");
+    }
+
+    if (argv.limit === undefined) {
+      throw new Error("Partitioned fetch requires a limit to be specified");
+    }
+  }
 
   return true;
 };
