@@ -5,16 +5,16 @@ import FetchMamCommand from "./fetchMamCommand";
 import PublishMamCommand from "./publishMamCommand";
 
 const params: ICommandParam[] = [
-{
-  name: "mode", options: {
-    alias: "m",
-    type: "string",
-    description: "MAM Channel mode",
-    choices: ["public", "private", "restricted"],
-    required: true,
-    global: true
+  {
+    name: "mode", options: {
+      alias: "m",
+      type: "string",
+      description: "MAM Channel mode",
+      choices: ["public", "private", "restricted"],
+      required: true,
+      global: true
+    }
   }
-}
 ];
 
 const subCommands: Record<string, ICommand> = {
@@ -52,11 +52,11 @@ export class MamCommand implements ICommand {
       const command: ICommand = subCommands[name];
 
       yargs.command(command.name,
-                    command.description,
-                    commandYargs => {
-                          command.register(commandYargs);
-                    },
-                    command.execute
+        command.description,
+        commandYargs => {
+          command.register(commandYargs);
+        },
+        command.execute
       );
     });
   }
