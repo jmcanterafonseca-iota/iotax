@@ -11,6 +11,9 @@ const providers = Object.create(null);
 providers[DEVNET_URL] = "devnet";
 providers[COMNET_URL] = "comnet";
 
+/**
+ * @param network
+ */
 export function providerName(network: string): string {
   return providers[network];
 }
@@ -25,7 +28,10 @@ export const seedParam: ICommandParam = {
   }
 };
 
-export function getNetworkParams(args: Arguments): { network: string, mwm: number } {
+/**
+ * @param args
+ */
+export function getNetworkParams(args: Arguments): { network: string; mwm: number } {
   let network: string;
   let mwm: number = DEFAULT_MWM;
 

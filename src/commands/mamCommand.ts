@@ -4,7 +4,8 @@ import ICommandParam from "../ICommandParam";
 import FetchMamCommand from "./fetchMamCommand";
 import PublishMamCommand from "./publishMamCommand";
 
-const params: ICommandParam[] = [{
+const params: ICommandParam[] = [
+{
   name: "mode", options: {
     alias: "m",
     type: "string",
@@ -31,7 +32,9 @@ const checkFunction = argv => {
 
 export class MamCommand implements ICommand {
   public name: string = "mam";
+
   public description: string = "MAM Channel Operations";
+
   public subCommands: Record<string, ICommand> = subCommands;
 
   public async execute(args: Arguments): Promise<boolean> {

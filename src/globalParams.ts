@@ -1,4 +1,4 @@
-import {Arguments} from "yargs";
+import { Arguments } from "yargs";
 import ICommandParam from "./ICommandParam";
 
 export const globalParams: ICommandParam[] = [
@@ -34,10 +34,14 @@ export const globalConflicts = {
   comnet: ["devnet", "net"]
 };
 
+/**
+ * @param argv
+ * @param field
+ */
 function isDefined(argv: Arguments, field: string): boolean {
   const value = argv[field];
 
-  if (typeof(value) === "undefined") {
+  if (typeof (value) === "undefined") {
     return false;
   }
 
@@ -45,7 +49,7 @@ function isDefined(argv: Arguments, field: string): boolean {
     return false;
   }
 
-  if (typeof(value) === "string" && value.trim().length === 0) {
+  if (typeof (value) === "string" && value.trim().length === 0) {
     return false;
   }
 

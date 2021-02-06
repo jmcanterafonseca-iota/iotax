@@ -1,4 +1,4 @@
-import {MamCommand} from "./commands/mamCommand";
+import { MamCommand } from "./commands/mamCommand";
 import ICommand from "./ICommand";
 
 const commandRegistry: Record<string, ICommand> = {

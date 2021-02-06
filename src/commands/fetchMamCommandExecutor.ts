@@ -1,45 +1,47 @@
+import { trytesToAscii } from "@iota/converter";
 import { API, composeAPI } from "@iota/core";
+import { channelRoot, createChannel, IMamChannelState, mamFetchAll, mamFetchCombined, MamMode } from "@iota/mam.js";
 import { Arguments } from "yargs";
 
-import { channelRoot, createChannel, IMamChannelState, mamFetchAll, mamFetchCombined, MamMode } from "@iota/mam.js";
-
-import { trytesToAscii } from "@iota/converter";
 
 const INTERVAL: number = 5000;
 const CHUNK_SIZE: number = 10;
 
 const SECURITY_LEVEL: number = 2;
 
-type MamChannel = {
+interface MamChannel {
   root: string;
-  mode: MamMode,
-  sideKey?: string,
-};
+  mode: MamMode;
+  sideKey?: string;
+}
 
-type RetrievalParams = {
-  seed?: string,
-  root?: string,
-  mode: MamMode,
-  sideKey?: string,
-  from?: number,
-  maxChunkSize?: number,
-  limit?: number,
-  watch?: boolean
-};
+interface RetrievalParams {
+  seed?: string;
+  root?: string;
+  mode: MamMode;
+  sideKey?: string;
+  from?: number;
+  maxChunkSize?: number;
+  limit?: number;
+  watch?: boolean;
+}
 
 type MamFetchParameters = RetrievalParams & {
-  network: string,
-  partitions: number,
-  combined: boolean
+  network: string;
+  partitions: number;
+  combined: boolean;
 };
 
+/**
+ * @param args
+ */
 async function fetchMamChannel(args: MamFetchParameters): Promise<any> {
   try {
     // Initialise IOTA API
     const api: API = composeAPI({ provider: args.network });
 
     // mamFetchCombined
-    if (args.partitions > 1 && args.combined === true) {
+    if (args.partitions > 1 && args.combined) {
       return await retrievePartitionedCombined(args, api);
     }
 
@@ -51,26 +53,32 @@ async function fetchMamChannel(args: MamFetchParameters): Promise<any> {
     // Retrieve "iteratively"
     return await retrieve(args, api);
   } catch (error) {
-    console.error("Error while fetching MAM Channel: ", error);
+    console.error("Error while fetching MAM Channel:", error);
     return false;
   }
 }
 
 /* Calculates the start root. from can be different than 0 and in that case a seed has to be provided */
+/**
+ * @param args
+ */
 function startRoot(args: RetrievalParams): string {
   if (args.from === 0 && args.root) {
     return args.root;
-  } else {
+  }
     const channelState: IMamChannelState = createChannel(
       args.seed, SECURITY_LEVEL, args.mode, args.sideKey
     );
     channelState.start = args.from;
 
     return channelRoot(channelState);
-  }
 }
 
 // Partitions a MAM Channel with the size specified
+/**
+ * @param args
+ * @param partitionSize
+ */
 function createPartitions(args: MamFetchParameters, partitionSize: number): MamChannel[] {
   const partitions = [];
 
@@ -93,6 +101,10 @@ function createPartitions(args: MamFetchParameters, partitionSize: number): MamC
   return partitions;
 }
 
+/**
+ * @param args
+ * @param api
+ */
 async function retrievePartitionedCombined(args: MamFetchParameters, api: API): Promise<boolean> {
   return new Promise<boolean>((resolve, reject) => {
     let partitionSize = Math.floor(args.limit / args.partitions);
@@ -127,7 +139,7 @@ async function retrievePartitionedCombined(args: MamFetchParameters, api: API): 
           resolve(true);
         }
       } catch (error) {
-        console.error("Error while fetching MAM Channel: ", error);
+        console.error("Error while fetching MAM Channel:", error);
         reject(error);
       }
     };
@@ -137,6 +149,10 @@ async function retrievePartitionedCombined(args: MamFetchParameters, api: API): 
 }
 
 // limit is ignored if watch is on
+/**
+ * @param args
+ * @param api
+ */
 async function retrieve(args: RetrievalParams, api: API): Promise<unknown> {
   return new Promise<unknown>((resolve, reject) => {
     let currentRoot = startRoot(args);
@@ -146,7 +162,7 @@ async function retrieve(args: RetrievalParams, api: API): Promise<unknown> {
     let executing = false;
 
     const retrievalFunction = async () => {
-      if (executing === true) {
+      if (executing) {
         return;
       }
 
@@ -174,7 +190,7 @@ async function retrieve(args: RetrievalParams, api: API): Promise<unknown> {
           if (total < args.limit) {
             setImmediate(retrievalFunction);
           }
-        } else if (args.watch === true) {
+        } else if (args.watch) {
           const intervalId = setInterval(retrievalFunction, INTERVAL);
           resolve(intervalId);
         } else {
@@ -182,7 +198,7 @@ async function retrieve(args: RetrievalParams, api: API): Promise<unknown> {
         }
         // console.log('Current Root', currentRoot);
       } catch (error) {
-        console.error("Error while fetching MAM Channel: ", error);
+        console.error("Error while fetching MAM Channel:", error);
         reject(error);
       } finally {
         executing = false;
@@ -193,6 +209,10 @@ async function retrieve(args: RetrievalParams, api: API): Promise<unknown> {
   }); // end of promise
 }
 
+/**
+ * @param args
+ * @param api
+ */
 async function retrievePartitioned(args: MamFetchParameters, api: API): Promise<unknown> {
   return new Promise<unknown>((resolve, reject) => {
     let partitionSize = Math.floor(args.limit / args.partitions);
@@ -216,7 +236,7 @@ async function retrievePartitioned(args: MamFetchParameters, api: API): Promise<
           sideKey: args.sideKey,
           limit: partitionSize,
           mode: args.mode
-        },       api)
+        }, api)
       );
     }
 
@@ -230,7 +250,7 @@ async function retrievePartitioned(args: MamFetchParameters, api: API): Promise<
         sideKey: args.sideKey,
         limit: lastLimit,
         mode: args.mode
-      },       api)
+      }, api)
     );
 
     Promise.all(promises).then(resolve, reject);
@@ -275,6 +295,6 @@ export default class FetchMamCommandExecutor {
       partitions, combined
     };
 
-    return await fetchMamChannel(params);
+    return fetchMamChannel(params);
   }
 }

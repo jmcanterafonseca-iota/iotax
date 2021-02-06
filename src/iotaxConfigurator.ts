@@ -1,10 +1,9 @@
 import { Arguments, Argv } from "yargs";
 import commandRegistry from "./commandRegistry";
-import {globalCheckFunction, globalConflicts, globalParams} from "./globalParams";
+import { globalCheckFunction, globalConflicts, globalParams } from "./globalParams";
 import ICommand from "./ICommand";
 
 export default class IotaxConfigurator {
-
   public static parseCommandLine(yargs: Argv): Arguments {
     globalParams.forEach(aParam => {
       yargs.option(aParam.name, aParam.options);
@@ -25,5 +24,4 @@ export default class IotaxConfigurator {
 
     return yargs.argv;
   }
-
 }

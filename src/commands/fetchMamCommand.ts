@@ -90,11 +90,13 @@ const checkFunction = argv => {
 
 export default class FetchMamCommand implements ICommand {
   public subCommands: null;
+
   public name: string = "fetch";
+
   public description: string = "MAM Channel Fetch";
 
   public async execute(args: Arguments): Promise<boolean> {
-    return await FetchMamCommandExecutor.execute(args);
+    return FetchMamCommandExecutor.execute(args);
   }
 
   public register(yargs: Argv): void {
