@@ -14,7 +14,7 @@ const params: ICommandParam[] = [
     options: {
       type: "string",
       description: "Sidekey for restricted channels",
-      default: null,
+      default: undefined,
       global: false
     }
   },

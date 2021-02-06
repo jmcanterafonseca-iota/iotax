@@ -56,7 +56,7 @@ export class MamCommand implements ICommand {
         commandYargs => {
           command.register(commandYargs);
         },
-        command.execute
+        async commandYargs => command.execute(commandYargs)
       );
     });
   }

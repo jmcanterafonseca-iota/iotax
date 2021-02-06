@@ -22,9 +22,14 @@ const mamExplorerLink: string = "https://explorer.iota.org";
 const SECURITY_LEVEL = 2;
 const DEPTH = 3;
 
-// The publish to MAM Channel function
+
 /**
- * @param args
+ * The publish to MAM Channel function
+ *
+ * @param args Publish params
+ *
+ * @returns the tree root, the current root, and the next index
+ *
  */
 async function publish(args: PublishParams): Promise<{
   treeRoot: string;
@@ -55,14 +60,19 @@ async function publish(args: PublishParams): Promise<{
 
 
 /**
- * @param root
- * @param params
+ * Formats the URL to be used with the IOTA Explorer Web App
+ *
+ * @param root The root
+ * @param params The publish params
+ *
+ * @returns the URL
+ *
  */
 function formatExplorerURI(root: string, params: PublishParams): string {
   if (!params.sideKey) {
     return `${mamExplorerLink}/${providerName(params.network)}/streams/0/${root}/${params.mode}`;
   }
-    return `${mamExplorerLink}/${providerName(params.network)}/streams/0/${root}/${params.mode}/${params.sideKey}`;
+  return `${mamExplorerLink}/${providerName(params.network)}/streams/0/${root}/${params.mode}/${params.sideKey}`;
 }
 
 export default class PublishMamCommandExecutor {

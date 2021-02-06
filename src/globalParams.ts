@@ -35,8 +35,13 @@ export const globalConflicts = {
 };
 
 /**
- * @param argv
- * @param field
+ * Checks whether and argument is defined
+ *
+ * @param argv The Arguments
+ * @param field The fields
+ *
+ * @returns whether the argument is defined or not
+ *
  */
 function isDefined(argv: Arguments, field: string): boolean {
   const value = argv[field];
