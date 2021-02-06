@@ -10,7 +10,7 @@ CLI for IOTA 1, Chrysalis and beyond
 ## Installation
 
 ```
-npm install -g iotax
+npm install -g @jmcanterafonseca-iota/iotax
 ```
 
 ## Run 
