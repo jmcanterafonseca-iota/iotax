@@ -1,6 +1,6 @@
 {
   "name": "@jmcanterafonseca-iota/iotax",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "CLI for IOTA",
   "bin": {
     "iotax": "./dist/iotax.js"
@@ -34,6 +34,7 @@
   "homepage": "https://github.com/jmcanterafonseca-iota/iotax#readme",
   "dependencies": {
     "@iota/mam.js": "^1.0.0-beta.9",
+    "@iota/identity-wasm": "0.0.0",
     "yargs": "^15.4.1"
   },
   "devDependencies": {
