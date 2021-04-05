@@ -108,66 +108,52 @@ Options:
 ## DID 
 
 ```
-iotax mam
+iotax did
 
-MAM Channel Operations
+DID Operations
 
 Commands:
-  iotax mam fetch    MAM Channel Fetch
-  iotax mam publish  MAM Channel Publish
+  iotax did create   DID Creation
+  iotax did resolve  DID Resolution
 
 Options:
   --version   Show version number                                      [boolean]
-  --mainnet   IOTA Mainnet                                       [boolean]
+  --mainnet   IOTA Mainnet                                             [boolean]
   --devnet    IOTA Devnet                                              [boolean]
   --comnet    IOTA Comnet                                              [boolean]
   --net, -n   IOTA Network                                              [string]
   --help      Show help                                                [boolean]
-  --mode, -m  MAM Channel mode
-                [string] [required] [choices: "public", "private", "restricted"]
 ```
 
 ### DID Creation
 
 ```
-iotax mam
+iotax did create
 
-MAM Channel Operations
-
-Commands:
-  iotax mam fetch    MAM Channel Fetch
-  iotax mam publish  MAM Channel Publish
+DID Creation
 
 Options:
   --version   Show version number                                      [boolean]
-  --mainnet   IOTA Mainnet                                       [boolean]
+  --mainnet   IOTA Mainnet                                             [boolean]
   --devnet    IOTA Devnet                                              [boolean]
   --comnet    IOTA Comnet                                              [boolean]
   --net, -n   IOTA Network                                              [string]
   --help      Show help                                                [boolean]
-  --mode, -m  MAM Channel mode
-                [string] [required] [choices: "public", "private", "restricted"]
 ```
 
 ### DID Resolution
 
 ```
-iotax mam
+iotax did resolve
 
-MAM Channel Operations
-
-Commands:
-  iotax mam fetch    MAM Channel Fetch
-  iotax mam publish  MAM Channel Publish
+DID Resolution
 
 Options:
   --version   Show version number                                      [boolean]
-  --mainnet   IOTA Mainnet                                       [boolean]
+  --mainnet   IOTA Mainnet                                             [boolean]
   --devnet    IOTA Devnet                                              [boolean]
   --comnet    IOTA Comnet                                              [boolean]
   --net, -n   IOTA Network                                              [string]
   --help      Show help                                                [boolean]
-  --mode, -m  MAM Channel mode
-                [string] [required] [choices: "public", "private", "restricted"]
+  --did      DID to be resolved                              [string] [required]
 ```
-
