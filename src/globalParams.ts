@@ -3,6 +3,14 @@ import ICommandParam from "./ICommandParam";
 
 export const globalParams: ICommandParam[] = [
   {
+    name: "mainnet",
+    options: {
+      type: "boolean",
+      description: "IOTA Mainnet",
+      global: true
+    }
+  },
+  {
     name: "devnet",
     options: {
       type: "boolean",
@@ -30,8 +38,9 @@ export const globalParams: ICommandParam[] = [
 ];
 
 export const globalConflicts = {
-  devnet: ["comnet", "net"],
-  comnet: ["devnet", "net"]
+  mainnet: ["devnet", "comnet", "net"],
+  devnet: ["mainnet", "comnet", "net"],
+  comnet: ["mainnet", "devnet", "net"]
 };
 
 /**
@@ -62,9 +71,10 @@ function isDefined(argv: Arguments, field: string): boolean {
 }
 
 export const globalCheckFunction = argv => {
-  if (!isDefined(argv, "net") && !isDefined(argv, "devnet") && !isDefined(argv, "comnet")) {
+  if (!isDefined(argv, "net") &&
+    !isDefined(argv, "devnet") && !isDefined(argv, "comnet") && !isDefined(argv, "mainnet")) {
     throw new Error(
-      "Missing network. Use --devnet, --comnet or provide a custom URL using --net"
+      "Missing network. Use --mainnet, --devnet, --comnet or provide a custom URL using --net"
     );
   } else {
     return true;
