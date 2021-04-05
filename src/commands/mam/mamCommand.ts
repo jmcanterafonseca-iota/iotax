@@ -1,6 +1,6 @@
 import { Arguments, Argv } from "yargs";
-import ICommand from "../ICommand";
-import ICommandParam from "../ICommandParam";
+import ICommand from "../../ICommand";
+import ICommandParam from "../../ICommandParam";
 import FetchMamCommand from "./fetchMamCommand";
 import PublishMamCommand from "./publishMamCommand";
 

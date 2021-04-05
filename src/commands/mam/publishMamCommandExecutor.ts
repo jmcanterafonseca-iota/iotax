@@ -4,7 +4,7 @@ import { channelRoot, createChannel, createMessage, IMamChannelState, mamAttach,
 import { Arguments } from "yargs";
 
 
-import { getNetworkParams, providerName } from "./commonParams";
+import { getNetworkParams, providerName } from "../commonParams";
 
 interface PublishParams {
   network: string;

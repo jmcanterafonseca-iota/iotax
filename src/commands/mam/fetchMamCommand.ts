@@ -1,7 +1,7 @@
 import { Arguments, Argv } from "yargs";
-import ICommand from "../ICommand";
-import ICommandParam from "../ICommandParam";
-import { seedParam } from "./commonParams";
+import ICommand from "../../ICommand";
+import ICommandParam from "../../ICommandParam";
+import { seedParam } from "../commonParams";
 import FetchMamCommandExecutor from "./fetchMamCommandExecutor";
 
 const params: ICommandParam[] = [
