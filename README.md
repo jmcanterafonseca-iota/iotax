@@ -24,9 +24,11 @@ iotax [command]
 
 Commands:
   iotax mam  MAM Channel Operations
+  iotax did  DID operations
 
 Options:
   --version  Show version number                                       [boolean]
+  --mainnet  IOTA Mainnet                                              [boolean]
   --devnet   IOTA Devnet                                               [boolean]
   --comnet   IOTA Comnet                                               [boolean]
   --net, -n  IOTA Network                                               [string]
@@ -46,6 +48,7 @@ Commands:
 
 Options:
   --version   Show version number                                      [boolean]
+  --mainnet   IOTA Mainnet                                       [boolean]
   --devnet    IOTA Devnet                                              [boolean]
   --comnet    IOTA Comnet                                              [boolean]
   --net, -n   IOTA Network                                              [string]
@@ -63,6 +66,7 @@ MAM Channel Fetch
 
 Options:
   --version     Show version number                                    [boolean]
+  --mainnet     IOTA Mainnet                                       [boolean]
   --devnet      IOTA Devnet                                            [boolean]
   --comnet      IOTA Comnet                                            [boolean]
   --net, -n     IOTA Network                                            [string]
@@ -88,6 +92,7 @@ MAM Channel Publish
 
 Options:
   --version         Show version number                                [boolean]
+  --mainnet         IOTA Mainnet                                       [boolean]
   --devnet          IOTA Devnet                                        [boolean]
   --comnet          IOTA Comnet                                        [boolean]
   --net, -n         IOTA Network                                        [string]
@@ -98,4 +103,57 @@ Options:
   --sidekey         Sidekey for restricted channels     [string] [default: null]
   --message, --msg  JSON message to be published             [string] [required]
   --index, -i       Start index used to publish            [number] [default: 0]
+```
+
+## DID 
+
+```
+iotax did
+
+DID Operations
+
+Commands:
+  iotax did create   DID Creation
+  iotax did resolve  DID Resolution
+
+Options:
+  --version   Show version number                                      [boolean]
+  --mainnet   IOTA Mainnet                                             [boolean]
+  --devnet    IOTA Devnet                                              [boolean]
+  --comnet    IOTA Comnet                                              [boolean]
+  --net, -n   IOTA Network                                              [string]
+  --help      Show help                                                [boolean]
+```
+
+### DID Creation
+
+```
+iotax did create
+
+DID Creation
+
+Options:
+  --version   Show version number                                      [boolean]
+  --mainnet   IOTA Mainnet                                             [boolean]
+  --devnet    IOTA Devnet                                              [boolean]
+  --comnet    IOTA Comnet                                              [boolean]
+  --net, -n   IOTA Network                                              [string]
+  --help      Show help                                                [boolean]
+```
+
+### DID Resolution
+
+```
+iotax did resolve
+
+DID Resolution
+
+Options:
+  --version   Show version number                                      [boolean]
+  --mainnet   IOTA Mainnet                                             [boolean]
+  --devnet    IOTA Devnet                                              [boolean]
+  --comnet    IOTA Comnet                                              [boolean]
+  --net, -n   IOTA Network                                              [string]
+  --help      Show help                                                [boolean]
+  --did      DID to be resolved                              [string] [required]
 ```

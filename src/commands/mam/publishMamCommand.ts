@@ -1,7 +1,7 @@
 import { Arguments, Argv } from "yargs";
-import ICommand from "../ICommand";
-import ICommandParam from "../ICommandParam";
-import { seedParam } from "./mamParams";
+import ICommand from "../../ICommand";
+import ICommandParam from "../../ICommandParam";
+import { seedParam } from "../commonParams";
 import PublishMamCommandExecutor from "./publishMamCommandExecutor";
 
 const publishSeedParam: ICommandParam = JSON.parse(JSON.stringify(seedParam)) as ICommandParam;

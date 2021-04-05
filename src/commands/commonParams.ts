@@ -3,14 +3,17 @@ import ICommandParam from "../ICommandParam";
 
 const COMNET_URL = "https://nodes.comnet.thetangle.org";
 const DEVNET_URL = "https://nodes.devnet.iota.org";
+const MAINNET_URL = "https://nodes.iota.org";
 
 const DEFAULT_MWM: number = 9;
 const COMNET_MWM: number = 10;
+const MAINNET_MWM: number = 14;
 
 const providers: { [key: string]: string } = Object.create(null);
 
 providers[DEVNET_URL] = "devnet";
 providers[COMNET_URL] = "comnet";
+providers[MAINNET_URL] = "mainnet";
 
 /**
  * Returns the network provider name
@@ -55,6 +58,11 @@ export function getNetworkParams(args: Arguments): { network: string; mwm: numbe
   if (args.comnet) {
     network = COMNET_URL;
     mwm = COMNET_MWM;
+  }
+
+  if (args.mainnet) {
+    network = MAINNET_URL;
+    mwm = MAINNET_MWM;
   }
 
   return { network, mwm };
