@@ -5,9 +5,6 @@ import CreateDidCommandExecutor from "./createDidCommandExecutor";
 
 const params: ICommandParam[] = [];
 
-
-const checkFunction = argv => true;
-
 export default class CreateDidCommand implements ICommand {
   public subCommands: null;
 
@@ -23,7 +20,5 @@ export default class CreateDidCommand implements ICommand {
     params.forEach(aParam => {
       yargs.option(aParam.name, aParam.options);
     });
-
-    yargs.check(checkFunction);
   }
 }

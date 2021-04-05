@@ -1,12 +1,19 @@
 import { Arguments, Argv } from "yargs";
 import ICommand from "../../ICommand";
 import ICommandParam from "../../ICommandParam";
-import CreateDidCommandExecutor from "./createDidCommandExecutor";
+import ResolveDidCommandExecutor from "./resolveDidCommandExecutor";
 
-const params: ICommandParam[] = [];
+const params: ICommandParam[] = [
+  {
+    name: "did",
+    options: {
+      type: "string",
+      description: "DID to be resolved",
+      required: true
+    }
+  }
+];
 
-
-const checkFunction = argv => true;
 
 export default class ResolveDidCommand implements ICommand {
   public subCommands: null;
@@ -16,14 +23,12 @@ export default class ResolveDidCommand implements ICommand {
   public description: string = "DID resolution";
 
   public async execute(args: Arguments): Promise<boolean> {
-    return CreateDidCommandExecutor.execute(args);
+    return ResolveDidCommandExecutor.execute(args);
   }
 
   public register(yargs: Argv): void {
     params.forEach(aParam => {
       yargs.option(aParam.name, aParam.options);
     });
-
-    yargs.check(checkFunction);
   }
 }

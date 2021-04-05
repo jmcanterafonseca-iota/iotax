@@ -5,11 +5,6 @@ import { Arguments } from "yargs";
 
 export default class CreateDidCommandExecutor {
   public static async execute(args: Arguments): Promise<boolean> {
-    if (args.devnet || args.comnet || args.net) {
-      console.error("Error: Only the mainnet is supported for DIDs");
-      return false;
-    }
-
     const { doc, key } = (new Document(KeyType.Ed25519) as unknown) as NewDocument;
     doc.sign(key);
 

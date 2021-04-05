@@ -24,9 +24,11 @@ iotax [command]
 
 Commands:
   iotax mam  MAM Channel Operations
+  iotax did  DID operations
 
 Options:
   --version  Show version number                                       [boolean]
+  --mainnet  IOTA Mainnet                                              [boolean]
   --devnet   IOTA Devnet                                               [boolean]
   --comnet   IOTA Comnet                                               [boolean]
   --net, -n  IOTA Network                                               [string]
@@ -46,6 +48,7 @@ Commands:
 
 Options:
   --version   Show version number                                      [boolean]
+  --mainnet   IOTA Mainnet                                       [boolean]
   --devnet    IOTA Devnet                                              [boolean]
   --comnet    IOTA Comnet                                              [boolean]
   --net, -n   IOTA Network                                              [string]
@@ -63,6 +66,7 @@ MAM Channel Fetch
 
 Options:
   --version     Show version number                                    [boolean]
+  --mainnet     IOTA Mainnet                                       [boolean]
   --devnet      IOTA Devnet                                            [boolean]
   --comnet      IOTA Comnet                                            [boolean]
   --net, -n     IOTA Network                                            [string]
@@ -88,6 +92,7 @@ MAM Channel Publish
 
 Options:
   --version         Show version number                                [boolean]
+  --mainnet         IOTA Mainnet                                       [boolean]
   --devnet          IOTA Devnet                                        [boolean]
   --comnet          IOTA Comnet                                        [boolean]
   --net, -n         IOTA Network                                        [string]
@@ -99,3 +104,70 @@ Options:
   --message, --msg  JSON message to be published             [string] [required]
   --index, -i       Start index used to publish            [number] [default: 0]
 ```
+
+## DID 
+
+```
+iotax mam
+
+MAM Channel Operations
+
+Commands:
+  iotax mam fetch    MAM Channel Fetch
+  iotax mam publish  MAM Channel Publish
+
+Options:
+  --version   Show version number                                      [boolean]
+  --mainnet   IOTA Mainnet                                       [boolean]
+  --devnet    IOTA Devnet                                              [boolean]
+  --comnet    IOTA Comnet                                              [boolean]
+  --net, -n   IOTA Network                                              [string]
+  --help      Show help                                                [boolean]
+  --mode, -m  MAM Channel mode
+                [string] [required] [choices: "public", "private", "restricted"]
+```
+
+### DID Creation
+
+```
+iotax mam
+
+MAM Channel Operations
+
+Commands:
+  iotax mam fetch    MAM Channel Fetch
+  iotax mam publish  MAM Channel Publish
+
+Options:
+  --version   Show version number                                      [boolean]
+  --mainnet   IOTA Mainnet                                       [boolean]
+  --devnet    IOTA Devnet                                              [boolean]
+  --comnet    IOTA Comnet                                              [boolean]
+  --net, -n   IOTA Network                                              [string]
+  --help      Show help                                                [boolean]
+  --mode, -m  MAM Channel mode
+                [string] [required] [choices: "public", "private", "restricted"]
+```
+
+### DID Resolution
+
+```
+iotax mam
+
+MAM Channel Operations
+
+Commands:
+  iotax mam fetch    MAM Channel Fetch
+  iotax mam publish  MAM Channel Publish
+
+Options:
+  --version   Show version number                                      [boolean]
+  --mainnet   IOTA Mainnet                                       [boolean]
+  --devnet    IOTA Devnet                                              [boolean]
+  --comnet    IOTA Comnet                                              [boolean]
+  --net, -n   IOTA Network                                              [string]
+  --help      Show help                                                [boolean]
+  --mode, -m  MAM Channel mode
+                [string] [required] [choices: "public", "private", "restricted"]
+```
+

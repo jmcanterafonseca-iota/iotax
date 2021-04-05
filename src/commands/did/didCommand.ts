@@ -11,7 +11,13 @@ const subCommands: Record<string, ICommand> = {
   resolve: new ResolveDidCommand()
 };
 
-const checkFunction = argv => true;
+const checkFunction = argv => {
+  if (argv.devnet || argv.comnet || argv.net) {
+    throw new Error("Only the mainnet is supported for DIDs");
+  }
+
+  return true;
+};
 
 export class DidCommand implements ICommand {
   public name: string = "did";
