@@ -3,7 +3,16 @@ import ICommand from "../../ICommand";
 import ICommandParam from "../../ICommandParam";
 import CreateDidCommandExecutor from "./createDidCommandExecutor";
 
-const params: ICommandParam[] = [];
+const params: ICommandParam[] = [
+{
+  name: "didService",
+  options: {
+    type: "string",
+    description: "List of DID services (JSON Array)",
+    required: false
+  }
+}
+];
 
 export default class CreateDidCommand implements ICommand {
   public subCommands: null;

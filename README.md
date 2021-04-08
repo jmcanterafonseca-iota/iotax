@@ -133,12 +133,13 @@ iotax did create
 DID Creation
 
 Options:
-  --version   Show version number                                      [boolean]
-  --mainnet   IOTA Mainnet                                             [boolean]
-  --devnet    IOTA Devnet                                              [boolean]
-  --comnet    IOTA Comnet                                              [boolean]
-  --net, -n   IOTA Network                                              [string]
-  --help      Show help                                                [boolean]
+  --version     Show version number                                      [boolean]
+  --mainnet     IOTA Mainnet                                             [boolean]
+  --devnet      IOTA Devnet                                              [boolean]
+  --comnet      IOTA Comnet                                              [boolean]
+  --net, -n     IOTA Network                                              [string]
+  --help        Show help                                                [boolean]
+  --didService  List of DID services (JSON Array)                       [string]
 ```
 
 ### DID Resolution
