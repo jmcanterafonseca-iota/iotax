@@ -139,7 +139,7 @@ Options:
   --comnet      IOTA Comnet                                              [boolean]
   --net, -n     IOTA Network                                              [string]
   --help        Show help                                                [boolean]
-  --didService  List of DID services (JSON Array)                       [string]
+  --didService  List of DID services (JSON Array)                        [string]
 ```
 
 ### DID Resolution
@@ -161,6 +161,62 @@ Options:
 
 ## Verifiable Credentials (VC)
 
+```
+iotax vc
+
+Verifiable Credential operations
+
+Commands:
+  iotax vc issue   VC issuance
+  iotax vc verify  VC verification
+
+Options:
+  --version  Show version number                                       [boolean]
+  --mainnet  IOTA Mainnet                                              [boolean]
+  --devnet   IOTA Devnet                                               [boolean]
+  --comnet   IOTA Comnet                                               [boolean]
+  --net, -n  IOTA Network                                               [string]
+  --help     Show help                                                 [boolean]
+  --method   Verification Method                             [string] [required]
+```
+
 ### Issuing a VC
 
+```
+iotax vc issue
+
+VC issuance
+
+Options:
+  --version  Show version number                                       [boolean]
+  --mainnet  IOTA Mainnet                                              [boolean]
+  --devnet   IOTA Devnet                                               [boolean]
+  --comnet   IOTA Comnet                                               [boolean]
+  --net, -n  IOTA Network                                               [string]
+  --help     Show help                                                 [boolean]
+  --method   Verification Method                             [string] [required]
+  --issuer   DID of the issuer of the VC                     [string] [required]
+  --secret   Secret key of the issuer                        [string] [required]
+  --subject  (D)ID of the subject of the VC                  [string] [required]
+  --claims   Credential claim data (As a JSON Object)        [string] [required]
+  --type     Credential type                                 [string] [required]
+  --id       Credential id                                              [string]
+```
+
 ### Verifying a VC
+
+```
+iotax vc verify
+
+VC verification
+
+Options:
+  --version  Show version number                                       [boolean]
+  --mainnet  IOTA Mainnet                                              [boolean]
+  --devnet   IOTA Devnet                                               [boolean]
+  --comnet   IOTA Comnet                                               [boolean]
+  --net, -n  IOTA Network                                               [string]
+  --help     Show help                                                 [boolean]
+  --method   Verification Method                             [string] [required]
+  --vc       Verifiable Credential to be verified (As JSON)  [string] [required]
+```
