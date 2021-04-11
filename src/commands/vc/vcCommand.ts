@@ -4,7 +4,16 @@ import ICommandParam from "../../ICommandParam";
 import IssueVcCommand from "./issueVcCommand";
 import VerifyVcCommand from "./verifyVcCommand";
 
-const params: ICommandParam[] = [];
+const params: ICommandParam[] = [
+{
+  name: "method",
+  options: {
+    type: "string",
+    description: "Verification Method",
+    required: true
+  }
+}
+];
 
 const subCommands: Record<string, ICommand> = {
   issue: new IssueVcCommand(),

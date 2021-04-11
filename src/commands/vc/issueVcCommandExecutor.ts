@@ -22,16 +22,21 @@ export default class IssueVcCommandExecutor {
 
       const issDocument = Document.fromJSON(issDoc);
 
-      const vc = VerifiableCredential.issue(issDocument, claims,
-        args.type as string, args.id as string);
+      const vc = VerifiableCredential.extend({
+        id: args.id as string,
+        type: args.type as string,
+        issuer: issDoc.id,
+        credentialSubject: claims
+      });
 
       const signedVc = issDocument.signCredential(vc, {
-        secret: args.secret
+        secret: args.secret,
+        method: issDocument.resolveKey(args.method as string).toJSON().id
       });
 
       console.log(signedVc.toJSON());
     } catch (error) {
-      console.log("Error:", error.message);
+      console.log("Error:", error);
       return false;
     }
 
@@ -44,7 +49,7 @@ export default class IssueVcCommandExecutor {
     try {
       claims = JSON.parse(claimsStr);
       if (typeof claims !== "object" || Array.isArray(claims)) {
-        console.error("The claims data has to be provided as an object");
+        console.error("The claims data has to be provided as a JSON object");
         claims = undefined;
       }
     } catch {

@@ -8,7 +8,7 @@ const params: ICommandParam[] = [
     name: "vc",
     options: {
       type: "string",
-      description: "Verifiable Credential to be verified",
+      description: "Verifiable Credential to be verified (As JSON)",
       required: true
     }
   }
