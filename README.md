@@ -158,3 +158,9 @@ Options:
   --help      Show help                                                [boolean]
   --did      DID to be resolved                              [string] [required]
 ```
+
+## Verifiable Credentials (VC)
+
+### Issuing a VC
+
+### Verifying a VC
