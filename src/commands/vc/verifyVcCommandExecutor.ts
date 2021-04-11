@@ -11,7 +11,6 @@ export default class VerifyVcCommandExecutor {
       });
 
       console.log(verification.verified);
-      
     } catch (error) {
       console.error("Error:", error);
       return false;

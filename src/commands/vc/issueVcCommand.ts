@@ -13,6 +13,14 @@ const params: ICommandParam[] = [
     }
   },
   {
+    name: "secret",
+    options: {
+      type: "string",
+      description: "Secret key of the issuer",
+      required: true
+    }
+  },
+  {
     name: "subject",
     options: {
       type: "string",
@@ -34,6 +42,14 @@ const params: ICommandParam[] = [
       type: "string",
       description: "Credential type",
       required: true
+    }
+  },
+  {
+    name: "id",
+    options: {
+      type: "string",
+      description: "Credential id",
+      required: false
     }
   }
 ];
