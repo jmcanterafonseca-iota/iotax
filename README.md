@@ -25,6 +25,7 @@ iotax [command]
 Commands:
   iotax mam  MAM Channel Operations
   iotax did  DID operations
+  iotax vc   VC  Operations
 
 Options:
   --version  Show version number                                       [boolean]
