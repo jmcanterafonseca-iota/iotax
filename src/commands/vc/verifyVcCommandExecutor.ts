@@ -1,4 +1,4 @@
-import { checkCredential as verifyCredential, VerifiableCredential } from "@iota/identity-wasm/node";
+import { checkCredential as verifyCredential } from "@iota/identity-wasm/node";
 import { Arguments } from "yargs";
 
 export default class VerifyVcCommandExecutor {
@@ -6,8 +6,6 @@ export default class VerifyVcCommandExecutor {
     const vc = args.vc as string;
 
     try {
-      VerifiableCredential.fromJSON(JSON.parse(vc));
-
       const verification = await verifyCredential(vc, {
         network: "mainnet"
       });
