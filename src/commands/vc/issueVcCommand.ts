@@ -51,6 +51,14 @@ const params: ICommandParam[] = [
       description: "Credential id",
       required: false
     }
+  },
+  {
+    name: "json",
+    options: {
+      type: "boolean",
+      description: "Output the credential in JSON format ready for cyp",
+      required: false
+    }
   }
 ];
 
