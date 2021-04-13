@@ -202,6 +202,7 @@ Options:
   --claims   Credential claim data (As a JSON Object)        [string] [required]
   --type     Credential type                                 [string] [required]
   --id       Credential id                                              [string]
+  --json     Output the credential in JSON format ready for cyp        [boolean]
 ```
 
 ### Verifying a VC

@@ -34,7 +34,12 @@ export default class IssueVcCommandExecutor {
         method: issDocument.resolveKey(args.method as string).toJSON().id
       });
 
-      console.log(signedVc.toJSON());
+      let output = signedVc.toJSON();
+      if (args.json) {
+        output = JSON.stringify(output, undefined, 2);
+      }
+
+      console.log(output);
     } catch (error) {
       console.log("Error:", error);
       return false;
