@@ -3,18 +3,18 @@ import ICommandParam from "./ICommandParam";
 
 export const globalParams: ICommandParam[] = [
   {
-    name: "mainnet",
+    name: "testnet",
     options: {
       type: "boolean",
-      description: "IOTA Mainnet",
+      description: "IOTAChrysalis Testnet",
       global: true
     }
   },
   {
-    name: "devnet",
+    name: "mainnet",
     options: {
       type: "boolean",
-      description: "IOTA Devnet",
+      description: "IOTA Chrysalis Mainnet",
       global: true
     }
   },
