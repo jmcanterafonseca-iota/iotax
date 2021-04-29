@@ -50,15 +50,6 @@ const params: ICommandParam[] = [
     }
   },
   {
-    name: "combined",
-    options: {
-      type: "boolean",
-      description: "MAM Fetch Combined",
-      default: false,
-      global: false
-    }
-  },
-  {
     name: "watch", options: {
       alias: "w",
       type: "boolean",

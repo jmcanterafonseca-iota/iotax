@@ -1,6 +1,4 @@
-import { trytesToAscii } from "@iota/converter";
-import { API, composeAPI } from "@iota/core";
-import { channelRoot, createChannel, IMamChannelState, mamFetchAll, mamFetchCombined, MamMode } from "@iota/mam.js";
+import { channelRoot, createChannel, IMamChannelState, mamFetchAll, MamMode } from "@iota/mam.js";
 import { Arguments } from "yargs";
 
 
@@ -41,18 +39,13 @@ type MamFetchParameters = RetrievalParams & {
  */
 async function fetchMamChannel(args: MamFetchParameters): Promise<boolean> {
   try {
-    // Initialise IOTA API
-    const api: API = composeAPI({ provider: args.network });
-
     // mamFetchCombined
-    if (args.partitions > 1 && args.combined) {
-      await retrievePartitionedCombined(args, api);
-    } else if (args.partitions > 1) {
+    if (args.partitions > 1) {
       // Partition channels Promise.all
-      await retrievePartitioned(args, api);
+      await retrievePartitioned(args, args.network);
     } else {
       // Retrieve "iteratively"
-      await retrieve(args, api);
+      await retrieve(args, args.network);
     }
     return true;
   } catch (error) {
@@ -113,68 +106,16 @@ function createPartitions(args: MamFetchParameters, partitionSize: number): MamC
 }
 
 /**
- * Retrieves in partitioned mode using mamFetchCombined
- *
- * @param args MAM Fetch Parameters
- * @param api  IOTA API
- *
- * @returns void
- *
- */
-async function retrievePartitionedCombined(args: MamFetchParameters, api: API): Promise<void> {
-  return new Promise<void>((resolve, reject) => {
-    let partitionSize = Math.floor(args.limit / args.partitions);
-
-    if (partitionSize === 0) {
-      partitionSize = args.limit;
-    }
-
-    if (typeof args.from === "undefined") {
-      args.from = 0;
-    }
-
-    const channels = createPartitions(args, partitionSize);
-
-    let total = 0;
-
-    const retrievalFunction = async () => {
-      try {
-        const fetched = await mamFetchCombined(api, channels);
-
-        for (let k = 0; k < fetched.length; k++) {
-          console.log(JSON.parse(trytesToAscii(fetched[k].message)));
-          channels[k].root = fetched[k].nextRoot;
-        }
-
-        if (fetched.length > 0) {
-          total += fetched.length;
-          if (total < args.limit) {
-            setImmediate(retrievalFunction);
-          }
-        } else {
-          resolve();
-        }
-      } catch (error) {
-        console.error("Error while fetching MAM Channel:", error);
-        reject(error);
-      }
-    };
-
-    setImmediate(retrievalFunction);
-  });
-}
-
-/**
  * Retrieves from MAM Channel
  * limit is ignored if watch is on
  *
  * @param args Retrieval arguments
- * @param api  IOTA API
+ * @param node  IOTA node URL
  *
  * @returns void
  *
  */
-async function retrieve(args: RetrievalParams, api: API): Promise<void> {
+async function retrieve(args: RetrievalParams, node: string): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     let currentRoot = startRoot(args);
 
@@ -193,7 +134,7 @@ async function retrieve(args: RetrievalParams, api: API): Promise<void> {
 
       try {
         const fetched = await mamFetchAll(
-          api,
+          node,
           currentRoot,
           args.mode,
           args.sideKey,
@@ -201,7 +142,7 @@ async function retrieve(args: RetrievalParams, api: API): Promise<void> {
         );
 
         fetched.forEach(result => {
-          console.log(JSON.parse(trytesToAscii(result.message)));
+          console.log(JSON.parse(result.message));
         });
 
         if (fetched.length > 0) {
@@ -234,11 +175,11 @@ async function retrieve(args: RetrievalParams, api: API): Promise<void> {
  * Retrieves data in partitioned mode
  *
  * @param args Fetch parameters
- * @param api  IOTA API
+ * @param node  IOTA node URL
  *
  * @returns void
  */
-async function retrievePartitioned(args: MamFetchParameters, api: API): Promise<void> {
+async function retrievePartitioned(args: MamFetchParameters, node: string): Promise<void> {
   let partitionSize = Math.floor(args.limit / args.partitions);
 
   if (partitionSize === 0) {
@@ -260,7 +201,7 @@ async function retrievePartitioned(args: MamFetchParameters, api: API): Promise<
         sideKey: args.sideKey,
         limit: partitionSize,
         mode: args.mode
-      }, api)
+      }, node)
     );
   }
 
@@ -274,7 +215,7 @@ async function retrievePartitioned(args: MamFetchParameters, api: API): Promise<
       sideKey: args.sideKey,
       limit: lastLimit,
       mode: args.mode
-    }, api)
+    }, node)
   );
 
   await Promise.all(promises);
@@ -284,8 +225,8 @@ export default class FetchMamCommandExecutor {
   public static async execute(args: Arguments): Promise<boolean> {
     let network: string = args.net as string;
 
-    if (args.devnet) {
-      network = "https://nodes.devnet.iota.org";
+    if (args.testnet) {
+      network = "https://api.hornet-0.testnet.chrysalis2.com";
     }
 
     if (args.comnet) {

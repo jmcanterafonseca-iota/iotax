@@ -30,7 +30,7 @@ Commands:
 Options:
   --version  Show version number                                       [boolean]
   --mainnet  IOTA Mainnet                                              [boolean]
-  --devnet   IOTA Devnet                                               [boolean]
+  --testnet  IOTA testnet                                               [boolean]
   --comnet   IOTA Comnet                                               [boolean]
   --net, -n  IOTA Network                                               [string]
   --help     Show help                                                 [boolean]
@@ -50,7 +50,7 @@ Commands:
 Options:
   --version   Show version number                                      [boolean]
   --mainnet   IOTA Mainnet                                       [boolean]
-  --devnet    IOTA Devnet                                              [boolean]
+  --testnet   IOTA testnet                                              [boolean]
   --comnet    IOTA Comnet                                              [boolean]
   --net, -n   IOTA Network                                              [string]
   --help      Show help                                                [boolean]
@@ -68,7 +68,7 @@ MAM Channel Fetch
 Options:
   --version     Show version number                                    [boolean]
   --mainnet     IOTA Mainnet                                       [boolean]
-  --devnet      IOTA Devnet                                            [boolean]
+  --testnet     IOTA testnet                                            [boolean]
   --comnet      IOTA Comnet                                            [boolean]
   --net, -n     IOTA Network                                            [string]
   --help        Show help                                              [boolean]
@@ -94,7 +94,7 @@ MAM Channel Publish
 Options:
   --version         Show version number                                [boolean]
   --mainnet         IOTA Mainnet                                       [boolean]
-  --devnet          IOTA Devnet                                        [boolean]
+  --testnet         IOTA testnet                                        [boolean]
   --comnet          IOTA Comnet                                        [boolean]
   --net, -n         IOTA Network                                        [string]
   --help            Show help                                          [boolean]
@@ -120,7 +120,7 @@ Commands:
 Options:
   --version   Show version number                                      [boolean]
   --mainnet   IOTA Mainnet                                             [boolean]
-  --devnet    IOTA Devnet                                              [boolean]
+  --testnet   IOTA testnet                                              [boolean]
   --comnet    IOTA Comnet                                              [boolean]
   --net, -n   IOTA Network                                              [string]
   --help      Show help                                                [boolean]
@@ -136,7 +136,7 @@ DID Creation
 Options:
   --version     Show version number                                      [boolean]
   --mainnet     IOTA Mainnet                                             [boolean]
-  --devnet      IOTA Devnet                                              [boolean]
+  --testnet     IOTA testnet                                              [boolean]
   --comnet      IOTA Comnet                                              [boolean]
   --net, -n     IOTA Network                                              [string]
   --help        Show help                                                [boolean]
@@ -153,7 +153,7 @@ DID Resolution
 Options:
   --version   Show version number                                      [boolean]
   --mainnet   IOTA Mainnet                                             [boolean]
-  --devnet    IOTA Devnet                                              [boolean]
+  --testnet   IOTA testnet                                              [boolean]
   --comnet    IOTA Comnet                                              [boolean]
   --net, -n   IOTA Network                                              [string]
   --help      Show help                                                [boolean]
@@ -174,7 +174,7 @@ Commands:
 Options:
   --version  Show version number                                       [boolean]
   --mainnet  IOTA Mainnet                                              [boolean]
-  --devnet   IOTA Devnet                                               [boolean]
+  --testnet  IOTA testnet                                               [boolean]
   --comnet   IOTA Comnet                                               [boolean]
   --net, -n  IOTA Network                                               [string]
   --help     Show help                                                 [boolean]
@@ -191,7 +191,7 @@ VC issuance
 Options:
   --version  Show version number                                       [boolean]
   --mainnet  IOTA Mainnet                                              [boolean]
-  --devnet   IOTA Devnet                                               [boolean]
+  --testnet   IOTA testnet                                               [boolean]
   --comnet   IOTA Comnet                                               [boolean]
   --net, -n  IOTA Network                                               [string]
   --help     Show help                                                 [boolean]
@@ -215,7 +215,7 @@ VC verification
 Options:
   --version  Show version number                                       [boolean]
   --mainnet  IOTA Mainnet                                              [boolean]
-  --devnet   IOTA Devnet                                               [boolean]
+  --testnet  IOTA testnet                                               [boolean]
   --comnet   IOTA Comnet                                               [boolean]
   --net, -n  IOTA Network                                               [string]
   --help     Show help                                                 [boolean]

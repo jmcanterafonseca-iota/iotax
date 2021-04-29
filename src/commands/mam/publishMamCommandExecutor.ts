@@ -1,8 +1,5 @@
-import { asciiToTrytes } from "@iota/converter";
-import { composeAPI } from "@iota/core";
 import { channelRoot, createChannel, createMessage, IMamChannelState, mamAttach, MamMode } from "@iota/mam.js";
 import { Arguments } from "yargs";
-
 
 import { getNetworkParams, providerName } from "../commonParams";
 
@@ -20,7 +17,6 @@ interface PublishParams {
 const mamExplorerLink: string = "https://explorer.iota.org";
 
 const SECURITY_LEVEL = 2;
-const DEPTH = 3;
 
 
 /**
@@ -36,20 +32,17 @@ async function publish(args: PublishParams): Promise<{
   thisRoot: string;
   nextIndex: number;
 }> {
-  // Initialise IOTA API
-  const api = composeAPI({ provider: args.network });
-
   // Go to the corresponding channel
   const channelState: IMamChannelState = createChannel(args.seed, SECURITY_LEVEL, args.mode, args.sideKey);
 
   const treeRoot = channelRoot(channelState);
 
   channelState.start = args.startIndex;
-  const mamMessage = createMessage(channelState, asciiToTrytes(args.message));
+  const mamMessage = createMessage(channelState, args.message);
 
   // And then attach the message, tagging it if required.
   // Attaching will return the actual transactions attached to the tangle if you need them.
-  await mamAttach(api, mamMessage, DEPTH, args.mwm);
+  await mamAttach(args.network, mamMessage);
 
   return {
     treeRoot,

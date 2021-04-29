@@ -2,8 +2,8 @@ import { Arguments } from "yargs";
 import ICommandParam from "../ICommandParam";
 
 const COMNET_URL = "https://nodes.comnet.thetangle.org";
-const DEVNET_URL = "https://nodes.devnet.iota.org";
-const MAINNET_URL = "https://nodes.iota.org";
+const TESTNET_URL = "https://api.hornet-0.testnet.chrysalis2.com";
+const MAINNET_URL = "https://chrysalis-nodes.iota.org";
 
 const DEFAULT_MWM: number = 9;
 const COMNET_MWM: number = 10;
@@ -11,7 +11,7 @@ const MAINNET_MWM: number = 14;
 
 const providers: { [key: string]: string } = Object.create(null);
 
-providers[DEVNET_URL] = "devnet";
+providers[TESTNET_URL] = "testnet";
 providers[COMNET_URL] = "comnet";
 providers[MAINNET_URL] = "mainnet";
 
@@ -51,8 +51,8 @@ export function getNetworkParams(args: Arguments): { network: string; mwm: numbe
     network = args.net as string;
   }
 
-  if (args.devnet) {
-    network = DEVNET_URL;
+  if (args.testnet) {
+    network = TESTNET_URL;
   }
 
   if (args.comnet) {
