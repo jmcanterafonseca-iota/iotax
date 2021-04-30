@@ -1,7 +1,7 @@
 {
   "name": "@jmcanterafonseca-iota/iotax",
-  "version": "0.3.4",
-  "description": "CLI for IOTA",
+  "version": "1.5.0",
+  "description": "CLI for IOTA Chrysalis",
   "bin": {
     "iotax": "./dist/iotax.js"
   },
@@ -20,6 +20,7 @@
   },
   "keywords": [
     "iota",
+    "chrysalis",
     "cli",
     "util"
   ],
@@ -34,7 +35,6 @@
   "homepage": "https://github.com/jmcanterafonseca-iota/iotax#readme",
   "dependencies": {
     "@iota/identity-wasm": "^0.2.1",
-    "@iota/mam.js": "^1.5.0",
     "yargs": "^15.4.1"
   },
   "devDependencies": {
