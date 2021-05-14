@@ -31,7 +31,7 @@ export default class CreateDidCommandExecutor {
         public: key.public,
         private: key.secret
       },
-      transactionUrl: `https://explorer.iota.org/mainnet/transaction/${transactionId}`
+      transactionUrl: `https://explorer.iota.org/mainnet/message/${transactionId}`
     });
 
     return true;
