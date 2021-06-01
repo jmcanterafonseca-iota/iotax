@@ -126,6 +126,7 @@ Options:
   --help     Show help                                                 [boolean]
   --method   Verification Method                             [string] [required]
   --issuer   DID of the issuer of the VC                     [string] [required]
+  --expDate  Expiration Date                                 [string] [optional]
   --secret   Secret key of the issuer                        [string] [required]
   --subject  (D)ID of the subject of the VC                  [string] [required]
   --claims   Credential claim data (As a JSON Object)        [string] [required]
@@ -148,6 +149,5 @@ Options:
   --comnet   IOTA Comnet                                               [boolean]
   --net, -n  IOTA Network                                               [string]
   --help     Show help                                                 [boolean]
-  --method   Verification Method                             [string] [required]
   --vc       Verifiable Credential to be verified (As JSON)  [string] [required]
 ```
