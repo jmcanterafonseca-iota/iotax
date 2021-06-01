@@ -1,6 +1,6 @@
 {
   "name": "@jmcanterafonseca-iota/iotax",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "CLI for IOTA Chrysalis",
   "bin": {
     "iotax": "./dist/iotax.js"

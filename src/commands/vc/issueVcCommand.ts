@@ -13,6 +13,14 @@ const params: ICommandParam[] = [
     }
   },
   {
+    name: "method",
+    options: {
+      type: "string",
+      description: "Verification Method",
+      required: true
+    }
+  },
+  {
     name: "secret",
     options: {
       type: "string",
