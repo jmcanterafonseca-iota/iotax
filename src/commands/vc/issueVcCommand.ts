@@ -21,6 +21,14 @@ const params: ICommandParam[] = [
     }
   },
   {
+    name: "expDate",
+    options: {
+      type: "string",
+      description: "Expiration Date",
+      required: false
+    }
+  },
+  {
     name: "secret",
     options: {
       type: "string",

@@ -22,12 +22,23 @@ export default class IssueVcCommandExecutor {
 
       const issDocument = Document.fromJSON(issDoc);
 
-      const vc = VerifiableCredential.extend({
+      const credentialMetadata: {[key: string]: unknown} = {
         id: args.id as string,
         type: args.type as string,
         issuer: issDoc.id,
         credentialSubject: claims
-      });
+      };
+
+      if (args.expDate) {
+        const date = args.expDate as string;
+        const dateAsNumber = Date.parse(date);
+
+        if (!Number.isNaN(dateAsNumber)) {
+          credentialMetadata.expirationDate = date;
+        }
+      }
+
+      const vc = VerifiableCredential.extend(credentialMetadata);
 
       const signedVc = issDocument.signCredential(vc, {
         secret: args.secret,
