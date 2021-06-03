@@ -1,10 +1,12 @@
 /* eslint-disable no-duplicate-imports */
-import { Document, resolve as iotaDidResolve, VerifiablePresentation } from "@iota/identity-wasm/node";
+import { Document, resolve as iotaDidResolve, VerifiableCredential, VerifiablePresentation } from "@iota/identity-wasm/node";
 import { Arguments } from "yargs";
 
 export default class PresentVcCommandExecutor {
   public static async execute(args: Arguments): Promise<boolean> {
     const credential = args.vc as string;
+    const presentationType = args.type as string;
+    const presentationId = args.id as string;
 
     try {
       const credentialObj = JSON.parse(credential);
@@ -16,7 +18,8 @@ export default class PresentVcCommandExecutor {
 
       const holderDocument = Document.fromJSON(holderDoc);
 
-      const vp = new VerifiablePresentation(holderDocument, credentialObj, "t1", "");
+      const vp = new VerifiablePresentation(holderDocument,
+        VerifiableCredential.fromJSON(credentialObj), presentationType, presentationId);
 
       const signedPresentation = holderDocument.signPresentation(vp, {
         secret: args.secret,

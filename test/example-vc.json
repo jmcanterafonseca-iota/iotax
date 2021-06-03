@@ -2,21 +2,16 @@
   "@context": "https://www.w3.org/2018/credentials/v1",
   "type": [
     "VerifiableCredential",
-    "GlobalIdentifierCredential"
+    "Test"
   ],
   "credentialSubject": {
-    "id": "did:iota:4NLSGsGgWKhGNWYXU4k21WLbJTb6EifhPxxXEGE8yNkM",
-    "gs1CompanyPrefix": {
-      "type": "identifier",
-      "value": "9524444"
-    }
+    "id": "did:iota:C3p76qJ95j44ABcFnj5fdaL34whZAzr2roDACxTHJzbq"
   },
-  "issuer": "did:iota:4NLSGsGgWKhGNWYXU4k21WLbJTb6EifhPxxXEGE8yNkM",
-  "issuanceDate": "2021-06-01T11:00:08Z",
-  "expirationDate": "2021-06-01T11:01:00Z",
+  "issuer": "did:iota:4ppuF2oyVyARKznTfh5GB3mMbpAUPTKJYPF7duYLCRHT",
+  "issuanceDate": "2021-06-02T16:40:31Z",
   "proof": {
     "type": "JcsEd25519Signature2020",
     "verificationMethod": "#key",
-    "signatureValue": "5ctPpKEiyhxmxkrxyMwoQ1M1ybbU31GUUthzQ8LJ7dPappez4QLwkPofvsGW7gjLdqHk6Ax2qgns4wYYwBCyQHQa"
+    "signatureValue": "JZFNGJWqMjb8eBy8XGFgPF35KMGb4ee4uwrUV2NR3jMBUKY7GPFSYwFR5PfvtSDqkBHu7o4Wo3zN6ox8WU3EAgg"
   }
 }
