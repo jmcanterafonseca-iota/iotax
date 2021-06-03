@@ -135,7 +135,7 @@ Options:
   --json     Output the credential in JSON format ready for cyp        [boolean]
 ```
 
-### Verifying a VC
+### Verifying a VC or a VP
 
 ```
 iotax vc verify
@@ -150,4 +150,26 @@ Options:
   --net, -n  IOTA Network                                               [string]
   --help     Show help                                                 [boolean]
   --vc       Verifiable Credential to be verified (As JSON)  [string] [required]
+  --vp       Verifiable Presentation to be verified (As JSON)  [string] [required]
+```
+
+### Presenting a VC
+
+```
+iotax vc present
+
+Options:
+  --version  Show version number                                       [boolean]
+  --testnet  IOTA Chrysalis Testnet                                    [boolean]
+  --mainnet  IOTA Chrysalis Mainnet                                    [boolean]
+  --comnet   IOTA Comnet                                               [boolean]
+  --net, -n  IOTA Network                                               [string]
+  --help     Show help                                                 [boolean]
+  --vc       VC to be presented                              [string] [required]
+  --method   Verification Method                             [string] [required]
+  --secret   Secret key of the holder                        [string] [required]
+  --id       Presentation id                                            [string]
+  --type     Presentation type                                          [string]
+  --json     Output the credential presentation in JSON format ready for cyp
+                                                                       [boolean]
 ```

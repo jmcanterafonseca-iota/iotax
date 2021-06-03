@@ -2,13 +2,15 @@ import { Arguments, Argv } from "yargs";
 import ICommand from "../../ICommand";
 import ICommandParam from "../../ICommandParam";
 import IssueVcCommand from "./issueVcCommand";
+import PresentVcCommand from "./presentVcCommand";
 import VerifyVcCommand from "./verifyVcCommand";
 
 const params: ICommandParam[] = [];
 
 const subCommands: Record<string, ICommand> = {
   issue: new IssueVcCommand(),
-  verify: new VerifyVcCommand()
+  verify: new VerifyVcCommand(),
+  present: new PresentVcCommand()
 };
 
 const checkFunction = argv => {

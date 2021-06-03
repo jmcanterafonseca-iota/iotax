@@ -57,7 +57,7 @@ const params: ICommandParam[] = [
     options: {
       type: "string",
       description: "Credential type",
-      required: true
+      required: false
     }
   },
   {
