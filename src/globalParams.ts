@@ -52,7 +52,7 @@ export const globalConflicts = {
  * @returns whether the argument is defined or not
  *
  */
-function isDefined(argv: Arguments, field: string): boolean {
+export function isDefined(argv: Arguments, field: string): boolean {
   const value = argv[field];
 
   if (typeof (value) === "undefined") {
