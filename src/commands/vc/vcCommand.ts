@@ -25,7 +25,7 @@ const VC_TYPE = "VerifiableCredential";
 const VP_TYPE = "VerifiablePresentation";
 
 interface Credential {
- [key: string]: unknown;
+  [key: string]: unknown;
 }
 
 /**
@@ -36,18 +36,20 @@ interface Credential {
  * @returns boolean indicating if validates or not
  *
  */
-export function validateVc(vc: Credential) {
+export function validateVc(vc: Credential | string): { result: boolean; credentialObj?: Credential } {
   return validateCredential(vc, VC_TYPE);
 }
 
 /**
  * Validates a Verifiable Presentation
- *
- * @param vp Verifiable Presentation object
+ * @param cred Verifiable Presentation as an object or a string
  * @returns boolean indicating if validates or not
  */
-export function validateVp(vp: Credential): boolean {
-  if (validateCredential(vp, VP_TYPE)) {
+export function validateVp(cred: Credential | string): { result: boolean; credentialObj?: Credential } {
+  const { result, credentialObj } = validateCredential(cred, VP_TYPE);
+  const vp = credentialObj;
+
+  if (result) {
     const credentials = vp.verifiableCredential;
     let credArray: Credential[] = [];
 
@@ -57,16 +59,16 @@ export function validateVp(vp: Credential): boolean {
       credArray.push(credentials as Credential);
     }
 
-    for (const cred of credArray) {
-      if (!validateVc(cred)) {
-        return false;
+    for (const aCred of credArray) {
+      if (!validateVc(aCred).result) {
+        return { result: false };
       }
     }
 
-    return true;
+    return { result: true, credentialObj: vp };
   }
 
-    return false;
+  return { result: false };
 }
 
 /**
@@ -76,39 +78,58 @@ export function validateVp(vp: Credential): boolean {
  *
  * @returns boolean indicating if validates or not
  */
-export function validateVcOrVp(cred: Credential): boolean {
-  if (!validateCredential(cred, VC_TYPE)) {
+export function validateVcOrVp(cred: Credential | string): { result: boolean; credentialObj?: Credential } {
+  const { result, credentialObj } = validateCredential(cred, VC_TYPE);
+
+  if (!result) {
     return validateCredential(cred, VP_TYPE);
   }
 
-  return true;
+  return { result: true, credentialObj };
 }
 
 /**
  * Validates a credential that can be a Verifiable Credential or Verifiable Presentation
  *
- * @param vc Credential Object
+ * @param cred Credential Object or stringified credential object
  * @param credType Type of Credential "VerifiableCredential" or "VerifiablePresentation"
  *
  * @returns boolean indicating whether it validated or not
  */
-function validateCredential(vc: { [key: string]: unknown }, credType: string): boolean {
-  if (!vc && !vc.type) {
-    return false;
+function validateCredential(cred: Credential | string, credType: string):
+{ result: boolean; credentialObj?: Credential } {
+  let vc = cred;
+
+  if (!cred) {
+    return { result: false };
+  }
+
+  if (typeof cred === "string") {
+    try {
+      vc = JSON.parse(cred) as Credential;
+    } catch {
+      return { result: false };
+    }
+  } else {
+    vc = cred;
+  }
+
+  if (!vc.type) {
+    return { result: false };
   }
 
   if (Array.isArray(vc.type)) {
     const types = vc.type as string[];
     if (!types.includes(credType)) {
-      return false;
+      return { result: false };
     }
   } else if (typeof vc.type === "string") {
     if ((vc.type) !== credType) {
-      return false;
+      return { result: false };
     }
   }
 
-  return true;
+  return { result: true, credentialObj: vc };
 }
 
 export class VcCommand implements ICommand {

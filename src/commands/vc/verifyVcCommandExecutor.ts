@@ -18,10 +18,8 @@ export default class VerifyVcCommandExecutor {
   public static async doVerifyPresentation(args: Arguments): Promise<boolean> {
     const vp = args.vp as string;
 
-    const parsedCredential = JSON.parse(vp);
-
-    if (!validateVp(parsedCredential)) {
-      console.log("Error:", "Not a Verifiable Presentation");
+    if (!validateVp(vp).result) {
+      console.log("Error:", "Not a VerifiablePresentation");
       return false;
     }
 
@@ -42,14 +40,12 @@ export default class VerifyVcCommandExecutor {
   public static async doVerifyCredential(args: Arguments): Promise<boolean> {
     const vc = args.vc as string;
 
-    const parsedCredential = JSON.parse(vc);
-
-    if (!validateVc(parsedCredential)) {
-      console.log("Error:", "Not a Verifiable Credential");
-      return false;
-    }
-
     try {
+      if (!validateVc(vc).result) {
+        console.log("Error:", "Not a VerifiableCredential");
+        return false;
+      }
+
       const verification = await verifyCredential(vc, {
         network: "mainnet"
       });
@@ -59,7 +55,6 @@ export default class VerifyVcCommandExecutor {
       console.error("Error:", error);
       return false;
     }
-
     return true;
   }
 }

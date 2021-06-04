@@ -12,15 +12,16 @@ export default class PresentVcCommandExecutor {
     let holderDid = args.holder as string;
 
     try {
-      const credentialObj = JSON.parse(credential);
-      if (!validateVc(credentialObj)) {
-        console.log("Error:", "Not a Verifiable Credential");
+      const { result, credentialObj } = validateVc(credential);
+
+      if (!result) {
+        console.log("Error:", "Not a VerifiableCredential");
         return false;
       }
 
       // If no holder is passed then the holder is the subject
       if (!holderDid) {
-        holderDid = credentialObj.credentialSubject.id;
+        holderDid = (credentialObj.credentialSubject as Credential).id;
       }
 
       const holderDoc: Document = await iotaDidResolve(holderDid, {
