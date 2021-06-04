@@ -21,6 +21,96 @@ const checkFunction = argv => {
   return true;
 };
 
+const VC_TYPE = "VerifiableCredential";
+const VP_TYPE = "VerifiablePresentation";
+
+interface Credential {
+ [key: string]: unknown;
+}
+
+/**
+ * Validates a Verifiable Credential
+ *
+ * @param vc Verifiable Credential object
+ *
+ * @returns boolean indicating if validates or not
+ *
+ */
+export function validateVc(vc: Credential) {
+  return validateCredential(vc, VC_TYPE);
+}
+
+/**
+ * Validates a Verifiable Presentation
+ *
+ * @param vp Verifiable Presentation object
+ * @returns boolean indicating if validates or not
+ */
+export function validateVp(vp: Credential): boolean {
+  if (validateCredential(vp, VP_TYPE)) {
+    const credentials = vp.verifiableCredential;
+    let credArray: Credential[] = [];
+
+    if (Array.isArray(credentials)) {
+      credArray = credentials as Credential[];
+    } else {
+      credArray.push(credentials as Credential);
+    }
+
+    for (const cred of credArray) {
+      if (!validateVc(cred)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+    return false;
+}
+
+/**
+ * Validates that the object represents a Vc or Vp
+ *
+ * @param cred The object to be validated
+ *
+ * @returns boolean indicating if validates or not
+ */
+export function validateVcOrVp(cred: Credential): boolean {
+  if (!validateCredential(cred, VC_TYPE)) {
+    return validateCredential(cred, VP_TYPE);
+  }
+
+  return true;
+}
+
+/**
+ * Validates a credential that can be a Verifiable Credential or Verifiable Presentation
+ *
+ * @param vc Credential Object
+ * @param credType Type of Credential "VerifiableCredential" or "VerifiablePresentation"
+ *
+ * @returns boolean indicating whether it validated or not
+ */
+function validateCredential(vc: { [key: string]: unknown }, credType: string): boolean {
+  if (!vc.type) {
+    return false;
+  }
+
+  if (Array.isArray(vc.type)) {
+    const types = vc.type as string[];
+    if (!types.includes(credType)) {
+      return false;
+    }
+  } else if (typeof vc.type === "string") {
+    if ((vc.type) !== credType) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 export class VcCommand implements ICommand {
   public name: string = "vc";
 

@@ -13,6 +13,15 @@ const params: ICommandParam[] = [
     }
   },
   {
+    name: "holder",
+    options: {
+      type: "string",
+      description:
+      "Holder of who presents the credential. By default is the credential subject",
+      required: false
+    }
+  },
+  {
     name: "method",
     options: {
       type: "string",

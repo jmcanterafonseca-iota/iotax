@@ -1,16 +1,27 @@
 /* eslint-disable no-duplicate-imports */
 import { Document, resolve as iotaDidResolve, VerifiableCredential, VerifiablePresentation } from "@iota/identity-wasm/node";
 import { Arguments } from "yargs";
+import { validateVc } from "./vcCommand";
+
 
 export default class PresentVcCommandExecutor {
   public static async execute(args: Arguments): Promise<boolean> {
     const credential = args.vc as string;
     const presentationType = args.type as string;
     const presentationId = args.id as string;
+    let holderDid = args.holder as string;
 
     try {
       const credentialObj = JSON.parse(credential);
-      const holderDid = credentialObj.credentialSubject.id;
+      if (!validateVc(credentialObj)) {
+        console.log("Error:", "Not a Verifiable Credential");
+        return false;
+      }
+
+      // If no holder is passed then the holder is the subject
+      if (!holderDid) {
+        holderDid = credentialObj.credentialSubject.id;
+      }
 
       const holderDoc: Document = await iotaDidResolve(holderDid, {
         network: "mainnet"
