@@ -93,7 +93,7 @@ export function validateVcOrVp(cred: Credential): boolean {
  * @returns boolean indicating whether it validated or not
  */
 function validateCredential(vc: { [key: string]: unknown }, credType: string): boolean {
-  if (!vc.type) {
+  if (!vc && !vc.type) {
     return false;
   }
 
