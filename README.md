@@ -166,6 +166,8 @@ Options:
   --net, -n  IOTA Network                                               [string]
   --help     Show help                                                 [boolean]
   --vc       VC to be presented                              [string] [required]
+  --holder   Holder who presents the credential. By default is the credential
+             subject                                                    [string]
   --method   Verification Method                             [string] [required]
   --secret   Secret key of the holder                        [string] [required]
   --id       Presentation id                                            [string]
