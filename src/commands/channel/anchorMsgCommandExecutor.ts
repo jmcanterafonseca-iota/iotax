@@ -1,9 +1,9 @@
 /* eslint-disable no-duplicate-imports */
-import * as crypto from "crypto";
 import { Address, Author, Subscriber, ChannelType, SendOptions } from "wasm-node/iota_streams_wasm";
 import { Arguments } from "yargs";
 import { isDefined } from "../../globalParams";
 import { getNetworkParams } from "../commonParams";
+import { ChannelHelper } from "./channelHelper";
 
 export default class AnchorMsgCommandExecutor {
   public static async execute(args: Arguments): Promise<boolean> {
@@ -11,7 +11,7 @@ export default class AnchorMsgCommandExecutor {
 
     let seed = "";
     if (!isDefined(args, "seed")) {
-      seed = this.generateSeed();
+      seed = ChannelHelper.generateSeed();
     } else {
       seed = args.seed as string;
     }
@@ -131,26 +131,5 @@ export default class AnchorMsgCommandExecutor {
     }
 
     return true;
-  }
-
-
-  /**
-   * Generates a new seed
-   * @param length Seed length
-   *
-   * @returns The seed
-   */
-  private static generateSeed(length: number = 20) {
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
-
-    let seed = "";
-
-    while (seed.length < length) {
-      const bytes = crypto.randomBytes(1);
-      seed += alphabet[bytes[0] % alphabet.length];
-    }
-
-
-    return seed;
   }
 }
