@@ -37,7 +37,13 @@ export default class FetchMsgCommandExecutor {
         // In our case only one message is expected
 
         const message = Buffer.from(messages[0].get_message().get_public_payload()).toString();
-        console.log(message);
+        const msgID = messages[0].get_link().copy().msg_id;
+
+        const result = {
+          msgID,
+          message
+        };
+        console.log(result);
       }
     } catch {
       return false;
