@@ -1,9 +1,11 @@
 import { Arguments, Argv } from "yargs";
 import ICommand from "../../ICommand";
 import ICommandParam from "../../ICommandParam";
+import { seedParam } from "../commonParams";
 import AnchorMsgCommandExecutor from "./anchorMsgCommandExecutor";
 
 const params: ICommandParam[] = [
+  seedParam,
   {
     name: "msg",
     options: {
@@ -21,10 +23,10 @@ const params: ICommandParam[] = [
     }
   },
   {
-    name: "anchorage",
+    name: "anchorageID",
     options: {
       type: "string",
-      description: "The anchorage ID to anchor the message to",
+      description: "The anchorage (message) ID to anchor the message to",
       required: false
     }
   }

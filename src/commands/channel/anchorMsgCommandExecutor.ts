@@ -2,6 +2,7 @@
 import * as crypto from "crypto";
 import { Author, ChannelType, SendOptions } from "wasm-node/iota_streams_wasm";
 import { Arguments } from "yargs";
+import { isDefined } from "../../globalParams";
 import { getNetworkParams } from "../commonParams";
 
 export default class AnchorMsgCommandExecutor {
@@ -10,13 +11,19 @@ export default class AnchorMsgCommandExecutor {
       const node = getNetworkParams(args).network;
 
       const options = new SendOptions(node, true);
-      const seed = generateSeed();
+
+      let seed = "";
+      if (!isDefined(args, "seed")) {
+        seed = generateSeed();
+      } else {
+        seed = args.seed as string;
+      }
 
       const auth = new Author(seed, options.clone(), ChannelType.SingleBranch);
 
       const response = await auth.clone().send_announce();
       const announceLink = response.get_link();
-      const anchorage = announceLink.msg_id;
+      const anchorageID = announceLink.msg_id;
 
       const publicPayload = Buffer.from(args.msg as string);
       const maskedPayload = Buffer.from("");
@@ -29,7 +36,7 @@ export default class AnchorMsgCommandExecutor {
       const result = {
         seed,
         channel: auth.channel_address(),
-        anchorage,
+        anchorageID,
         msgID
       };
 
