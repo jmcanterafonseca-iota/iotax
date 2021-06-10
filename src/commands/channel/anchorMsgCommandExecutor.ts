@@ -66,7 +66,7 @@ export default class AnchorMsgCommandExecutor {
   }
 
   /**
-   *  Anchors the message as Author
+   *  Anchors the message as subscriber
    *
    * @param node Node to be used
    * @param seed Seed to be used
@@ -82,18 +82,32 @@ export default class AnchorMsgCommandExecutor {
       const channel = args.channel as string;
       const announceLink = Address.from_string(channel);
 
-      const channelId = announceLink.addr_id;
-
       await subs.clone().receive_announcement(announceLink);
 
       // The address of the anchorage message
       const anchorageID = args.anchorageID as string;
-      const anchorageMsgAddress = Address.from_string(`${channelId}:${anchorageID}`);
 
       // Iteratively retrieve messages until We find the one to anchor to
-      const message = await subs.clone().receive_msg(anchorageMsgAddress);
-      const anchorageMsgLink = message.get_link();
-      console.log(anchorageMsgLink);
+      let found = false;
+      let anchorageMsgLink: Address;
+      while (!found) {
+        const messages = await subs.clone().fetch_next_msgs();
+        if (!messages || messages.length === 0) {
+          break;
+        }
+
+        // In our case only one message is expected
+        anchorageMsgLink = messages[0].get_link().copy();
+
+        if (anchorageMsgLink.msg_id === anchorageID) {
+          found = true;
+        }
+      }
+
+      if (!found) {
+        console.error("Error:", `The anchorage message ${anchorageID} has not been found on Tangle`);
+        return false;
+      }
 
       const publicPayload = Buffer.from(args.msg as string);
       const maskedPayload = Buffer.from("");
