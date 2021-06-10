@@ -2,19 +2,13 @@ import { Arguments, Argv } from "yargs";
 import ICommand from "../../ICommand";
 import ICommandParam from "../../ICommandParam";
 import AnchorMsgCommand from "./anchorMsgCommand";
+import FetchMsgCommand from "./fetchMsgCommand";
 
 const params: ICommandParam[] = [];
 
 const subCommands: Record<string, ICommand> = {
-  anchor: new AnchorMsgCommand()
-};
-
-const checkFunction = argv => {
-  if (argv.testnet || argv.comnet || argv.net) {
-    throw new Error("Only the mainnet is supported for Streams");
-  }
-
-  return true;
+  anchor: new AnchorMsgCommand(),
+  fetch: new FetchMsgCommand()
 };
 
 export class ChannelCommand implements ICommand {
@@ -32,8 +26,6 @@ export class ChannelCommand implements ICommand {
     params.forEach(aParam => {
       yargs.option(aParam.name, aParam.options);
     });
-
-    yargs.check(checkFunction);
 
     Object.keys(subCommands).forEach(name => {
       const command: ICommand = subCommands[name];

@@ -1,22 +1,22 @@
 import { Arguments, Argv } from "yargs";
 import ICommand from "../../ICommand";
 import ICommandParam from "../../ICommandParam";
-import AnchorMsgCommandExecutor from "./anchorMsgCommandExecutor";
+import FetchMsgCommandExecutor from "./fetchMsgCommandExecutor";
 
 const params: ICommandParam[] = [
-  {
-    name: "msg",
-    options: {
-      type: "string",
-      description: "(JSON) Message to be anchored",
-      required: true
-    }
-  },
   {
     name: "channel",
     options: {
       type: "string",
-      description: "ID of the Channel to anchor the message to",
+      description: "ID of the Channel to from which to fetch the message",
+      required: false
+    }
+  },
+  {
+    name: "msgID",
+    options: {
+      type: "string",
+      description: "The ID of the message to be fetched",
       required: false
     }
   },
@@ -24,21 +24,21 @@ const params: ICommandParam[] = [
     name: "anchorage",
     options: {
       type: "string",
-      description: "The anchorage ID to anchor the message to",
+      description: "The anchorage ID of the message to be fetched",
       required: false
     }
   }
 ];
 
-export default class AnchorMsgCommand implements ICommand {
+export default class FetchMsgCommand implements ICommand {
   public subCommands: null;
 
-  public name: string = "anchor";
+  public name: string = "fetch";
 
-  public description: string = "Anchors a message to an IOTA Streams Channel";
+  public description: string = "Fetchs a message previously anchored to an IOTA Streams Channel";
 
   public async execute(args: Arguments): Promise<boolean> {
-    return AnchorMsgCommandExecutor.execute(args);
+    return FetchMsgCommandExecutor.execute(args);
   }
 
   public register(yargs: Argv): void {
