@@ -32,20 +32,25 @@ export default class FetchMsgCommandExecutor {
         const messages = await subs.clone().fetch_next_msgs();
         if (!messages || messages.length === 0) {
           finish = true;
+          break;
         }
 
         // In our case only one message is expected
 
         const message = Buffer.from(messages[0].get_message().get_public_payload()).toString();
         const msgID = messages[0].get_link().copy().msg_id;
+        const pk = messages[0].get_message().get_pk();
 
         const result = {
           msgID,
-          message
+          message,
+          pk
         };
+
         console.log(result);
       }
-    } catch {
+    } catch (error) {
+      console.error("Error:", error);
       return false;
     }
 

@@ -8,7 +8,7 @@ const params: ICommandParam[] = [
     name: "channel",
     options: {
       type: "string",
-      description: "ID of the Channel to from which to fetch the message",
+      description: "ID of the Channel from which to fetch the message",
       required: false
     }
   },
@@ -21,7 +21,7 @@ const params: ICommandParam[] = [
     }
   },
   {
-    name: "anchorage",
+    name: "anchorageID",
     options: {
       type: "string",
       description: "The anchorage ID of the message to be fetched",
