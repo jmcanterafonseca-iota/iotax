@@ -88,31 +88,17 @@ export default class AnchorMsgCommandExecutor {
       const anchorageID = args.anchorageID as string;
 
       // Iteratively retrieve messages until We find the one to anchor to
-      let found = false;
-      let anchorageMsgLink: Address;
-      while (!found) {
-        const messages = await subs.clone().fetch_next_msgs();
-        if (!messages || messages.length === 0) {
-          break;
-        }
-
-        // In our case only one message is expected
-        anchorageMsgLink = messages[0].get_link().copy();
-
-        if (anchorageMsgLink.msg_id === anchorageID) {
-          found = true;
-        }
-      }
+      const { found, anchorageLink } = await ChannelHelper.findAnchorage(subs, anchorageID);
 
       if (!found) {
-        console.error("Error:", `The anchorage message ${anchorageID} has not been found on Tangle`);
+        console.error("Error:", `The anchorage point ${anchorageID} has not been found on the Channel`);
         return false;
       }
 
       const publicPayload = Buffer.from(args.msg as string);
       const maskedPayload = Buffer.from("");
 
-      const anchoringResp = await subs.clone().send_signed_packet(anchorageMsgLink,
+      const anchoringResp = await subs.clone().send_signed_packet(anchorageLink,
         publicPayload, maskedPayload);
 
       const msgID = anchoringResp.get_link().msg_id;

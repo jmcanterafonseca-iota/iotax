@@ -26,7 +26,7 @@ const params: ICommandParam[] = [
     name: "anchorageID",
     options: {
       type: "string",
-      description: "The anchorage (message) ID to anchor the message to",
+      description: "The anchorage point (message) ID to anchor the message to",
       required: false
     }
   }

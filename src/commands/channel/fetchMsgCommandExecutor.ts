@@ -26,6 +26,36 @@ export default class FetchMsgCommandExecutor {
 
       await subs.clone().receive_announcement(announceLink);
 
+      // If there is an anchorageID and no msgID we try to find that message
+      // and then fetch from that one on
+      // If there is a msgID we could fetch it but that would require SingleDepth channel (not yet available)
+      if (isDefined(args, "anchorageID")) {
+        const anchorageID = args.anchorageID as string;
+
+        const { found } = await ChannelHelper.findAnchorage(subs, anchorageID);
+
+        if (!found) {
+          console.error("Error:", `The anchorage point ${anchorageID} has not been found on the Channel`);
+          return false;
+        }
+      }
+
+      // If there is a messageID now we just receive that message
+      // Otherwise we go through the anchoring points and printing the messages found
+      if (isDefined(args, "msgID")) {
+        const msgID = args.msgID as string;
+
+        const msgLink = Address.from_string(`${channel.split(":")[0]}:${msgID}`);
+        const message = await subs.clone().receive_msg(msgLink);
+        if (!message) {
+          console.error("Error:", `The message ${msgID} has not been found on the Channel`);
+          return false;
+        }
+
+        this.printMessage(message);
+        return true;
+      }
+
       // Iteratively retrieve messages until the end
       let finish = false;
       while (!finish) {
@@ -34,20 +64,7 @@ export default class FetchMsgCommandExecutor {
           finish = true;
           break;
         }
-
-        // In our case only one message is expected
-
-        const message = Buffer.from(messages[0].get_message().get_public_payload()).toString();
-        const msgID = messages[0].get_link().copy().msg_id;
-        const pk = messages[0].get_message().get_pk();
-
-        const result = {
-          msgID,
-          message,
-          pk
-        };
-
-        console.log(result);
+        this.printMessage(messages[0]);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -55,5 +72,25 @@ export default class FetchMsgCommandExecutor {
     }
 
     return true;
+  }
+
+  /**
+   * Prints a message to the standard output
+   *
+   * @param message The message to be printed
+   */
+  private static printMessage(message): void {
+    // In our case only one message is expected
+
+    const messageContent = Buffer.from(message.get_message().get_public_payload()).toString();
+    const msgID = message.get_link().copy().msg_id;
+    const pk = message.get_message().get_pk();
+
+    const result = {
+      msgID,
+      message: messageContent,
+      pk
+    };
+    console.log(result);
   }
 }
