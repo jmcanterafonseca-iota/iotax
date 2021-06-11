@@ -175,3 +175,66 @@ Options:
   --json     Output the credential presentation in JSON format ready for cyp
                                                                        [boolean]
 ```
+
+## IOTA Streams - Channel
+
+IOTA Streams Channel operations
+
+```
+Commands:
+  iotax channel anchor  Anchors a message to an IOTA Streams Channel
+  iotax channel fetch   Fetches one or more messages previously anchored to an
+                        IOTA Streams Channel
+
+Options:
+  --version  Show version number                                       [boolean]
+  --testnet  IOTA Chrysalis Testnet                                    [boolean]
+  --mainnet  IOTA Chrysalis Mainnet                                    [boolean]
+  --comnet   IOTA Comnet                                               [boolean]
+  --net, -n  IOTA Network                                               [string]
+  --help     Show help                                                 [boolean]
+````
+
+### Anchor message
+
+```
+iotax channel anchor
+
+Anchors a message to an IOTA Streams Channel
+
+Options:
+  --version      Show version number                                   [boolean]
+  --testnet      IOTA Chrysalis Testnet                                [boolean]
+  --mainnet      IOTA Chrysalis Mainnet                                [boolean]
+  --comnet       IOTA Comnet                                           [boolean]
+  --net, -n      IOTA Network                                           [string]
+  --help         Show help                                             [boolean]
+  --seed, -s     IOTA Streams Channel seed                              [string]
+  --msg          (JSON) Message content to be anchored       [string] [required]
+  --channel      ID of the Channel ('address:announceMsgID') to anchor the
+                 message to                                             [string]
+  --anchorageID  The anchorage point (message) ID to anchor the message to
+                                                                        [string]
+```
+
+### Fetch message(s)
+
+```
+iotax channel fetch
+
+Fetches one or more messages previously anchored to an IOTA Streams Channel
+
+Options:
+  --version      Show version number                                   [boolean]
+  --testnet      IOTA Chrysalis Testnet                                [boolean]
+  --mainnet      IOTA Chrysalis Mainnet                                [boolean]
+  --comnet       IOTA Comnet                                           [boolean]
+  --net, -n      IOTA Network                                           [string]
+  --help         Show help                                             [boolean]
+  --seed, -s     IOTA Streams Channel seed                              [string]
+  --channel      ID of the Channel ('address:announceMsgID') from which to fetch
+                 the message                                            [string]
+  --msgID        ID of the message to be fetched                        [string]
+  --anchorageID  ID of the anchorage where the message(s) to be fetched are
+                 anchored to                                            [string]
+```
