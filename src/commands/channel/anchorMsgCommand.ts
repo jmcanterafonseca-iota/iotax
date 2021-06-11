@@ -10,7 +10,7 @@ const params: ICommandParam[] = [
     name: "msg",
     options: {
       type: "string",
-      description: "(JSON) Message to be anchored",
+      description: "(JSON) Message content to be anchored",
       required: true
     }
   },
@@ -18,7 +18,7 @@ const params: ICommandParam[] = [
     name: "channel",
     options: {
       type: "string",
-      description: "ID of the Channel to anchor the message to",
+      description: "ID of the Channel ('address:announceMsgID') to anchor the message to",
       required: false
     }
   },
