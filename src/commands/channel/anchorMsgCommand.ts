@@ -1,4 +1,5 @@
 import { Arguments, Argv } from "yargs";
+import { isDefined } from "../../globalParams";
 import ICommand from "../../ICommand";
 import ICommandParam from "../../ICommandParam";
 import { seedParam } from "../commonParams";
@@ -47,5 +48,25 @@ export default class AnchorMsgCommand implements ICommand {
     params.forEach(aParam => {
       yargs.option(aParam.name, aParam.options);
     });
+
+    yargs.check(anchorMsgChecks, false);
+  }
+}
+
+/**
+ * Check that the proper parameters are passed
+ *
+ * @param argv The command line arguments
+ *
+ * @returns boolean or throws an exception
+ *
+ */
+ function anchorMsgChecks(argv) {
+  if (!isDefined(argv, "anchorageID") && isDefined(argv, "channel")) {
+    throw new Error(
+      "When specifying a channel you need to also specify the anchorageID point"
+    );
+  } else {
+    return true;
   }
 }

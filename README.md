@@ -19,12 +19,17 @@ On the command line just run ```iotax```
 
 ## Commands
 
+* [Decentralized Identities](#did)
+* [Verifiable Credentials](#verifiable-credentials-vc)
+* [Anchoring Channels](#iota-streams-anchoring-channels)
+
 ```
 iotax [command]
 
 Commands:
-  iotax did  DID operations
-  iotax vc   VC  Operations
+  iotax did      DID operations
+  iotax vc       VC  Operations
+  iotax channel  IOTA Streams Anchoring Channel operations
 
 Options:
   --version  Show version number                                       [boolean]
@@ -176,9 +181,9 @@ Options:
                                                                        [boolean]
 ```
 
-## IOTA Streams - Channel Anchorage Points
+## IOTA Streams Anchoring Channels
 
-IOTA Streams Channel anchorage operations
+IOTA Streams Anchoring Channels operations
 
 ```
 Commands:
