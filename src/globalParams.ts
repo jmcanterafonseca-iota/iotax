@@ -31,7 +31,7 @@ export const globalParams: ICommandParam[] = [
     options: {
       alias: "n",
       type: "string",
-      description: "IOTA Network",
+      description: "Node's endpoint or other IOTA network",
       global: true
     }
   }

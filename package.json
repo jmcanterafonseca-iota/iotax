@@ -1,6 +1,6 @@
 {
   "name": "@jmcanterafonseca-iota/iotax",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "CLI for IOTA Chrysalis",
   "bin": {
     "iotax": "./dist/iotax.js"
@@ -49,5 +49,8 @@
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "typescript": "^4.0.3"
-  }
+  },
+  "bundledDependencies": [
+    "wasm-node"
+  ]
 }

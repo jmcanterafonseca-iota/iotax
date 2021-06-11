@@ -5,10 +5,6 @@ const COMNET_URL = "https://nodes.comnet.thetangle.org";
 const TESTNET_URL = "https://api.hornet-0.testnet.chrysalis2.com";
 const MAINNET_URL = "https://chrysalis-nodes.iota.org";
 
-const DEFAULT_MWM: number = 9;
-const COMNET_MWM: number = 10;
-const MAINNET_MWM: number = 14;
-
 const providers: { [key: string]: string } = Object.create(null);
 
 providers[TESTNET_URL] = "testnet";
@@ -31,7 +27,7 @@ export const seedParam: ICommandParam = {
   options: {
     alias: "s",
     type: "string",
-    description: "MAM Channel's seed",
+    description: "IOTA Streams Channel seed",
     global: false
   }
 };
@@ -43,9 +39,8 @@ export const seedParam: ICommandParam = {
  *
  * @returns the params
  */
-export function getNetworkParams(args: Arguments): { network: string; mwm: number } {
+export function getNetworkParams(args: Arguments): { network: string } {
   let network: string;
-  let mwm: number = DEFAULT_MWM;
 
   if (args.net) {
     network = args.net as string;
@@ -57,13 +52,11 @@ export function getNetworkParams(args: Arguments): { network: string; mwm: numbe
 
   if (args.comnet) {
     network = COMNET_URL;
-    mwm = COMNET_MWM;
   }
 
   if (args.mainnet) {
     network = MAINNET_URL;
-    mwm = MAINNET_MWM;
   }
 
-  return { network, mwm };
+  return { network };
 }
