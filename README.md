@@ -181,9 +181,9 @@ Options:
                                                                        [boolean]
 ```
 
-## IOTA Streams Anchoring Channels
+## Anchoring Channels
 
-IOTA Streams Anchoring Channels operations
+Anchoring Channels operations (Powered by IOTA Streams)
 
 ```
 Commands:
