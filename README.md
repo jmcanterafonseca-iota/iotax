@@ -21,7 +21,7 @@ On the command line just run ```iotax```
 
 * [Decentralized Identities](#did)
 * [Verifiable Credentials](#verifiable-credentials-vc)
-* [Anchoring Channels](#iota-streams-anchoring-channels) (Powered by IOTA Streams)
+* [Anchoring Channels](#anchoring-channels) (Powered by IOTA Streams)
 
 ```
 iotax [command]
