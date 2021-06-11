@@ -31,7 +31,7 @@ Options:
   --mainnet  IOTA Mainnet                                              [boolean]
   --testnet  IOTA testnet                                               [boolean]
   --comnet   IOTA Comnet                                               [boolean]
-  --net, -n  IOTA Network                                               [string]
+  --net, -n  Node's endpoint or other IOTA network                     [string]
   --help     Show help                                                 [boolean]
 ```
 
@@ -51,7 +51,7 @@ Options:
   --mainnet   IOTA Mainnet                                             [boolean]
   --testnet   IOTA testnet                                              [boolean]
   --comnet    IOTA Comnet                                              [boolean]
-  --net, -n   IOTA Network                                              [string]
+  --net, -n   Node's endpoint or other IOTA network                     [string]
   --help      Show help                                                [boolean]
 ```
 
@@ -67,7 +67,7 @@ Options:
   --mainnet     IOTA Mainnet                                             [boolean]
   --testnet     IOTA testnet                                              [boolean]
   --comnet      IOTA Comnet                                              [boolean]
-  --net, -n     IOTA Network                                              [string]
+  --net, -n     Node's endpoint or other IOTA network                     [string]
   --help        Show help                                                [boolean]
   --didService  List of DID services (JSON Array)                        [string]
 ```
@@ -84,7 +84,7 @@ Options:
   --mainnet   IOTA Mainnet                                             [boolean]
   --testnet   IOTA testnet                                              [boolean]
   --comnet    IOTA Comnet                                              [boolean]
-  --net, -n   IOTA Network                                              [string]
+  --net, -n   Node's endpoint or other IOTA network                     [string]
   --help      Show help                                                [boolean]
   --did      DID to be resolved                              [string] [required]
 ```
@@ -105,7 +105,7 @@ Options:
   --mainnet  IOTA Mainnet                                              [boolean]
   --testnet  IOTA testnet                                               [boolean]
   --comnet   IOTA Comnet                                               [boolean]
-  --net, -n  IOTA Network                                               [string]
+  --net, -n  Node's endpoint or other IOTA network                     [string]
   --help     Show help                                                 [boolean]
   --method   Verification Method                             [string] [required]
 ```
@@ -120,9 +120,9 @@ VC issuance
 Options:
   --version  Show version number                                       [boolean]
   --mainnet  IOTA Mainnet                                              [boolean]
-  --testnet   IOTA testnet                                               [boolean]
+  --testnet  IOTA testnet                                               [boolean]
   --comnet   IOTA Comnet                                               [boolean]
-  --net, -n  IOTA Network                                               [string]
+  --net, -n  Node's endpoint or other IOTA network                     [string]
   --help     Show help                                                 [boolean]
   --method   Verification Method                             [string] [required]
   --issuer   DID of the issuer of the VC                     [string] [required]
@@ -147,7 +147,7 @@ Options:
   --mainnet  IOTA Mainnet                                              [boolean]
   --testnet  IOTA testnet                                               [boolean]
   --comnet   IOTA Comnet                                               [boolean]
-  --net, -n  IOTA Network                                               [string]
+  --net, -n  Node's endpoint or other IOTA network                     [string]
   --help     Show help                                                 [boolean]
   --vc       Verifiable Credential to be verified (As JSON)  [string] [required]
   --vp       Verifiable Presentation to be verified (As JSON)  [string] [required]
@@ -163,7 +163,7 @@ Options:
   --testnet  IOTA Chrysalis Testnet                                    [boolean]
   --mainnet  IOTA Chrysalis Mainnet                                    [boolean]
   --comnet   IOTA Comnet                                               [boolean]
-  --net, -n  IOTA Network                                               [string]
+  --net, -n  Node's endpoint or other IOTA network                     [string]
   --help     Show help                                                 [boolean]
   --vc       VC to be presented                              [string] [required]
   --holder   Holder who presents the credential. By default is the credential
@@ -176,9 +176,9 @@ Options:
                                                                        [boolean]
 ```
 
-## IOTA Streams - Channel
+## IOTA Streams - Channel Anchorage Points
 
-IOTA Streams Channel operations
+IOTA Streams Channel anchorage operations
 
 ```
 Commands:
@@ -191,7 +191,7 @@ Options:
   --testnet  IOTA Chrysalis Testnet                                    [boolean]
   --mainnet  IOTA Chrysalis Mainnet                                    [boolean]
   --comnet   IOTA Comnet                                               [boolean]
-  --net, -n  IOTA Network                                               [string]
+  --net, -n  Node's endpoint or other IOTA network                     [string]
   --help     Show help                                                 [boolean]
 ````
 
@@ -207,7 +207,7 @@ Options:
   --testnet      IOTA Chrysalis Testnet                                [boolean]
   --mainnet      IOTA Chrysalis Mainnet                                [boolean]
   --comnet       IOTA Comnet                                           [boolean]
-  --net, -n      IOTA Network                                           [string]
+  --net, -n       Node's endpoint or other IOTA network                     [string]
   --help         Show help                                             [boolean]
   --seed, -s     IOTA Streams Channel seed                              [string]
   --msg          (JSON) Message content to be anchored       [string] [required]
@@ -229,7 +229,7 @@ Options:
   --testnet      IOTA Chrysalis Testnet                                [boolean]
   --mainnet      IOTA Chrysalis Mainnet                                [boolean]
   --comnet       IOTA Comnet                                           [boolean]
-  --net, -n      IOTA Network                                           [string]
+  --net, -n      Node's endpoint or other IOTA network                     [string]
   --help         Show help                                             [boolean]
   --seed, -s     IOTA Streams Channel seed                              [string]
   --channel      ID of the Channel ('address:announceMsgID') from which to fetch
