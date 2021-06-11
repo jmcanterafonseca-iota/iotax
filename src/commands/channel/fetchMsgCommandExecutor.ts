@@ -46,7 +46,7 @@ export default class FetchMsgCommandExecutor {
         const msgID = args.msgID as string;
 
         const msgLink = Address.from_string(`${channel.split(":")[0]}:${msgID}`);
-        const message = await subs.clone().receive_msg(msgLink);
+        const message = await subs.clone().receive_signed_packet(msgLink);
         if (!message) {
           console.error("Error:", `The message ${msgID} has not been found on the Channel`);
           return false;
