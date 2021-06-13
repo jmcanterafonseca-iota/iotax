@@ -14,7 +14,7 @@ const subCommands: Record<string, ICommand> = {
 export class MessageCommand implements ICommand {
     public name: string = "msg";
 
-    public description: string = "Tangle message operations";
+    public description: string = "Tangle message (indexation payloads) operations";
 
     public subCommands: Record<string, ICommand> = subCommands;
 
