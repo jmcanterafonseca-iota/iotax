@@ -1,4 +1,5 @@
 import { Converter, SingleNodeClient, IMessage, IIndexationPayload, INDEXATION_PAYLOAD_TYPE } from "@iota/iota.js";
+// import { NeonPowProvider } from "@iota/pow-neon.js";
 import { Arguments } from "yargs";
 import { getNetworkParams } from "../commonParams";
 
@@ -7,7 +8,7 @@ export default class SubmitMsgCommandExecutor {
         const node = getNetworkParams(args).network;
 
         try {
-            const client = new SingleNodeClient(node);
+            const client = new SingleNodeClient(node/* , { powProvider: new NeonPowProvider() } */);
             const msgContent = args.msg as string;
             const index = args.index as string;
 
