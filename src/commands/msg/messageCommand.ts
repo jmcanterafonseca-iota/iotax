@@ -1,14 +1,14 @@
 import { Arguments, Argv } from "yargs";
 import ICommand from "../../ICommand";
 import ICommandParam from "../../ICommandParam";
-import FetchMsgCommand from "../channel/fetchMsgCommand";
+import GetMsgCommand from "../msg/getMsgCommand";
 import SubmitMsgCommand from "./submitMsgCommand";
 
 const params: ICommandParam[] = [];
 
 const subCommands: Record<string, ICommand> = {
   submit: new SubmitMsgCommand(),
-  fetch: new FetchMsgCommand()
+  get: new GetMsgCommand()
 };
 
 export class MessageCommand implements ICommand {

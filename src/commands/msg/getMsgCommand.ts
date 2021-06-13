@@ -1,29 +1,29 @@
 import { Arguments, Argv } from "yargs";
 import ICommand from "../../ICommand";
 import ICommandParam from "../../ICommandParam";
-import FetchMsgCommandExecutor from "../channel/fetchMsgCommandExecutor";
+import GetMsgCommandExecutor from "./getMsgCommandExecutor";
 
 const params: ICommandParam[] = [
   {
     name: "msgID",
     options: {
       type: "string",
-      description: "Id of the message to be fetch",
+      description: "Id of the message to be retrieved",
       required: true
     }
   }
 ];
 
 
-export default class FetchMsgCommand implements ICommand {
+export default class GetMsgCommand implements ICommand {
   public subCommands: null;
 
-  public name: string = "fetch";
+  public name: string = "get";
 
-  public description: string = "Message fetch";
+  public description: string = "Message retrieval";
 
   public async execute(args: Arguments): Promise<boolean> {
-    return FetchMsgCommandExecutor.execute(args);
+    return GetMsgCommandExecutor.execute(args);
   }
 
   public register(yargs: Argv): void {
