@@ -1,7 +1,7 @@
 import { Converter, SingleNodeClient, IMessage, IIndexationPayload, INDEXATION_PAYLOAD_TYPE } from "@iota/iota.js";
 // import { NeonPowProvider } from "@iota/pow-neon.js";
 import { Arguments } from "yargs";
-import { getNetworkParams } from "../commonParams";
+import { getNetworkParams, providerName } from "../commonParams";
 
 export default class SubmitMsgCommandExecutor {
     public static async execute(args: Arguments): Promise<boolean> {
@@ -27,7 +27,7 @@ export default class SubmitMsgCommandExecutor {
 
             console.log({
                 msgID,
-                explorerUrl: `https://explorer.iota.org/mainnet/message/${msgID}`
+                explorerUrl: `https://explorer.iota.org/${providerName(node)}/message/${msgID}`
             });
         } catch (error) {
             console.error("Error:", error);
