@@ -8,7 +8,7 @@ const params: ICommandParam[] = [
     name: "msgID",
     options: {
       type: "string",
-      description: "Id of the message to be retrieved",
+      description: "ID of the message to be retrieved",
       required: true
     }
   }
