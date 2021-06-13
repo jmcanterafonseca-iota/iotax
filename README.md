@@ -22,6 +22,7 @@ On the command line just run ```iotax```
 * [Decentralized Identities](#did)
 * [Verifiable Credentials](#verifiable-credentials-vc)
 * [Anchoring Channels](#anchoring-channels) (Powered by IOTA Streams)
+* [Tangle Messages](#tangle-messages)
 
 ```
 iotax [command]
@@ -30,6 +31,7 @@ Commands:
   iotax did      DID operations
   iotax vc       VC  Operations
   iotax channel  IOTA Streams Anchoring Channel operations
+  iotax msg      Tangle message (indexation payloads) operations
 
 Options:
   --version  Show version number                                       [boolean]
@@ -242,4 +244,57 @@ Options:
   --msgID        ID of the message to be fetched                        [string]
   --anchorageID  ID of the anchorage where the message(s) to be fetched are
                  anchored to                                            [string]
+```
+
+## Tangle Messages
+
+```
+Tangle message (indexation payloads) operations
+
+Commands:
+  iotax msg submit  Message (indexation payload) submission
+  iotax msg get     Message retrieval
+
+  Options:
+  --version  Show version number                                       [boolean]
+  --testnet  IOTA Chrysalis Testnet                                    [boolean]
+  --mainnet  IOTA Chrysalis Mainnet                                    [boolean]
+  --comnet   IOTA Comnet                                               [boolean]
+  --net, -n  Node's endpoint or other IOTA network                      [string]
+  --help     Show help                                                 [boolean]
+```
+
+### Submit a message (indexation payload)
+
+```
+iotax msg submit
+
+Message (indexation payload) submission
+
+Options:
+  --version  Show version number                                       [boolean]
+  --testnet  IOTA Chrysalis Testnet                                    [boolean]
+  --mainnet  IOTA Chrysalis Mainnet                                    [boolean]
+  --comnet   IOTA Comnet                                               [boolean]
+  --net, -n  Node's endpoint or other IOTA network                      [string]
+  --help     Show help                                                 [boolean]
+  --msg      Message content to be submitted                 [string] [required]
+  --index    Index for the message                           [string] [required]
+```
+
+### Retrieve a message
+
+```
+iotax msg get
+
+Message retrieval
+
+Options:
+  --version  Show version number                                       [boolean]
+  --testnet  IOTA Chrysalis Testnet                                    [boolean]
+  --mainnet  IOTA Chrysalis Mainnet                                    [boolean]
+  --comnet   IOTA Comnet                                               [boolean]
+  --net, -n  Node's endpoint or other IOTA network                      [string]
+  --help     Show help                                                 [boolean]
+  --msgID    ID of the message to be retrieved               [string] [required]
 ```
