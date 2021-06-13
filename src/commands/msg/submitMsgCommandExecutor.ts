@@ -33,6 +33,6 @@ export default class SubmitMsgCommandExecutor {
             return false;
         }
 
-        return false;
+        return true;
     }
 }
