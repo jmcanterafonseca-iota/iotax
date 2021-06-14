@@ -2,7 +2,10 @@ import { Arguments, Argv } from "yargs";
 import ICommand from "../../ICommand";
 import ICommandParam from "../../ICommandParam";
 import AnchorMsgCommand from "./anchorMsgCommand";
+import { initialize } from "./channelHelper";
 import FetchMsgCommand from "./fetchMsgCommand";
+
+initialize();
 
 const params: ICommandParam[] = [];
 

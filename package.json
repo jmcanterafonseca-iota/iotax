@@ -37,6 +37,7 @@
     "@iota/identity-wasm": "^0.3.1",
     "@iota/iota.js": "^1.5.3",
     "@iota/pow-neon.js": "^0.1.1",
+    "node-fetch": "^2.6.1",
     "yargs": "^15.4.1"
   },
   "devDependencies": {

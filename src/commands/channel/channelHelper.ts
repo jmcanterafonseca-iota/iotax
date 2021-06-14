@@ -1,5 +1,18 @@
 import * as crypto from "crypto";
-import { Address, Subscriber } from "wasm-node/iota_streams_wasm";
+import * as fetch from "node-fetch";
+import { set_panic_hook as streamsPanicHook, Address, Subscriber } from "wasm-node/iota_streams_wasm";
+
+/**
+ *   Initialization function for the Streams WASM bindings
+ */
+export function initialize() {
+    global.fetch = fetch;
+    global.Headers = fetch.Headers;
+    global.Request = fetch.Request;
+    global.Response = fetch.Response;
+
+    streamsPanicHook();
+}
 
 export class ChannelHelper {
     /**
