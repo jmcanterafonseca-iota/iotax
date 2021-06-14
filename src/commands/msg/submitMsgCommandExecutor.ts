@@ -20,7 +20,7 @@ export default class SubmitMsgCommandExecutor {
 
             const tips = await client.tips();
 
-            const parentMessageIDs = tips.tipMessageIds.slice(0, 4);
+            const parentMessageIDs = tips.tipMessageIds.slice(0, 2);
 
             const message: IMessage = {
                 payload,
