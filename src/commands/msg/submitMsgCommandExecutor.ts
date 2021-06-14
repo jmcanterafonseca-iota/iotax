@@ -1,5 +1,5 @@
 import { Converter, SingleNodeClient, IMessage, IIndexationPayload, INDEXATION_PAYLOAD_TYPE } from "@iota/iota.js";
-// import { NeonPowProvider } from "@iota/pow-neon.js";
+import { NeonPowProvider } from "@iota/pow-neon.js";
 import { Arguments } from "yargs";
 import { getNetworkParams, providerName } from "../commonParams";
 
@@ -8,7 +8,7 @@ export default class SubmitMsgCommandExecutor {
         const node = getNetworkParams(args).network;
 
         try {
-            const client = new SingleNodeClient(node/* , { powProvider: new NeonPowProvider() } */);
+            const client = new SingleNodeClient(node, { powProvider: new NeonPowProvider() });
             const msgContent = args.msg as string;
             const index = args.index as string;
 
@@ -18,8 +18,13 @@ export default class SubmitMsgCommandExecutor {
                 index: Converter.utf8ToHex(index)
             };
 
+            const tips = await client.tips();
+
+            const parentMessageIDs = tips.tipMessageIds.slice(0, 4);
+
             const message: IMessage = {
-                payload
+                payload,
+                parentMessageIds: parentMessageIDs
             };
 
             // The message ID is returned
@@ -27,6 +32,7 @@ export default class SubmitMsgCommandExecutor {
 
             console.log({
                 msgID,
+                parentMessageIDs,
                 explorerUrl: `https://explorer.iota.org/${providerName(node)}/message/${msgID}`
             });
         } catch (error) {

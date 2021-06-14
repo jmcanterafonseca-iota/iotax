@@ -2,7 +2,7 @@ import { Arguments } from "yargs";
 import ICommandParam from "../ICommandParam";
 
 const COMNET_URL = "https://nodes.comnet.thetangle.org";
-const TESTNET_URL = "https://api.hornet-0.testnet.chrysalis2.com";
+const TESTNET_URL = "https://api.lb-0.testnet.chrysalis2.com";
 const MAINNET_URL = "https://chrysalis-nodes.iota.org";
 
 const providers: { [key: string]: string } = Object.create(null);
